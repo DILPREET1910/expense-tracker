@@ -14,15 +14,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   backgroundColor: Colors.grey,
-      //   title: const Text('Expense Tracker'),
-      // ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            //card view start #start
             Expanded(
               flex: 3,
               child: Padding(
@@ -145,16 +141,20 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
+            //card view start #end
+            //categories section #start
             Expanded(
               flex: 4,
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-                child: Container(
-                  color: Colors.pink,
-                  child: const Text('puff'),
+                child: ListView.builder(
+                  itemBuilder: (BuildContext context, int index) {
+
+                  },
                 ),
               ),
             )
+            //categories section #end
           ],
         ),
       ),

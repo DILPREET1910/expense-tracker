@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 //google fonts package
 import 'package:google_fonts/google_fonts.dart';
 
+// custom lib/widgets
+import 'package:expense_tracker/widgets/categories.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -148,8 +151,10 @@ class _HomeState extends State<Home> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
                 child: ListView.builder(
+                  itemCount: 30,
                   itemBuilder: (BuildContext context, int index) {
-
+                    return Categories(
+                        name: 'name', amount: '100', icon: 'icon');
                   },
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 //date formatter import
 import 'package:intl/intl.dart';
@@ -62,6 +63,8 @@ class _DataState extends State<Data> {
                   shadowColor: Colors.black,
                   color: Colors.grey[350],
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       //date and categories selectors #start
                       Padding(
@@ -97,7 +100,20 @@ class _DataState extends State<Data> {
                       ),
                       //date and categories selectors #end
                       //amount input #start
-                      TextFormField(),
+                      Container(
+                        margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+                        height: 50,
+                        width: 200,
+                        child: TextFormField(
+                          decoration: const InputDecoration(
+                              icon: Icon(Icons.currency_rupee),
+                              labelText: 'amount'),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                        ),
+                      ),
                       //amount input #end
                       //description input #start
                       TextFormField(),

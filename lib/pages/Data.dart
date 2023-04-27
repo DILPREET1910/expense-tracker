@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+//date formatter import
+import 'package:intl/intl.dart';
+
+//import global variable
+import 'package:expense_tracker/globalVariables.dart' as globals;
+
 class Data extends StatefulWidget {
   const Data({Key? key}) : super(key: key);
 
@@ -8,9 +14,32 @@ class Data extends StatefulWidget {
 }
 
 class _DataState extends State<Data> {
+  //Variables #start
+  DateTime _datePicked = DateTime.now();
+
+  //Variables #end
+
+  //Functions #start
+  void _datePicker() {
+    showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1900),
+            lastDate: DateTime(2100))
+        .then((value) {
+      setState(() {
+        _datePicked = value!;
+        globals.dateText = DateFormat('dd-MMM-yyyy').format(_datePicked);
+      });
+    });
+  }
+
+  //Functions #end
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //prevents overflow error when keyboard pops up in mobile devices
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -33,9 +62,25 @@ class _DataState extends State<Data> {
                   color: Colors.grey[350],
                   child: Column(
                     children: [
-                      //date and categories #start
-                      Row(),
-                      //date and categories #end
+                      //date and categories selectors #start
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            //date selector
+                            TextButton(
+                              onPressed: _datePicker,
+                              child: Text(globals.dateText),
+                            ),
+                            TextButton(
+                              onPressed: () {},
+                              child: Text('date'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      //date and categories selectors #end
                       //amount input #start
                       TextFormField(),
                       //amount input #end

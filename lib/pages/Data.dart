@@ -16,6 +16,7 @@ class Data extends StatefulWidget {
 class _DataState extends State<Data> {
   //Variables #start
   DateTime _datePicked = DateTime.now();
+  String dropdownValue = 'item 1';
 
   //Variables #end
 
@@ -68,15 +69,29 @@ class _DataState extends State<Data> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            //date selector
+                            //date selector #start
                             TextButton(
                               onPressed: _datePicker,
                               child: Text(globals.dateText),
                             ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text('date'),
+                            //date selector #end
+                            //categories dropdown #start
+                            DropdownButton(
+                              value: dropdownValue,
+                              icon: const Icon(Icons.arrow_drop_down_outlined),
+                              items: globals.list.map((String items) {
+                                return DropdownMenuItem(
+                                  value: items,
+                                  child: Text(items),
+                                );
+                              }).toList(),
+                              onChanged: (String? newvalue) {
+                                setState(() {
+                                  dropdownValue = newvalue!;
+                                });
+                              },
                             ),
+                            //categories dropdown #end
                           ],
                         ),
                       ),

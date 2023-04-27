@@ -18,7 +18,7 @@ class Data extends StatefulWidget {
 class _DataState extends State<Data> {
   //Variables #start
   DateTime _datePicked = DateTime.now();
-  String dropdownValue = 'item 1';
+  String dropdownValue = '*categories';
 
   //Variables #end
 
@@ -76,26 +76,52 @@ class _DataState extends State<Data> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             //date selector #start
-                            TextButton(
-                              onPressed: _datePicker,
-                              child: Text(globals.dateText),
+                            Expanded(
+                              flex: 1,
+                              child: TextButton(
+                                onPressed: _datePicker,
+                                child: Text(
+                                  globals.dateText,
+                                  style: GoogleFonts.balooBhai2(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
                             ),
                             //date selector #end
                             //categories dropdown #start
-                            DropdownButton(
-                              value: dropdownValue,
-                              icon: const Icon(Icons.arrow_drop_down_outlined),
-                              items: globals.list.map((String items) {
-                                return DropdownMenuItem(
-                                  value: items,
-                                  child: Text(items),
-                                );
-                              }).toList(),
-                              onChanged: (String? newvalue) {
-                                setState(() {
-                                  dropdownValue = newvalue!;
-                                });
-                              },
+                            Expanded(
+                              flex: 1,
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  isExpanded: true,
+                                  dropdownColor: Colors.grey[400],
+                                  value: dropdownValue,
+                                  focusColor: Colors.grey[350],
+                                  icon: const Icon(
+                                      Icons.arrow_drop_down_outlined),
+                                  items: globals.list.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Center(
+                                        child: Text(
+                                          items,
+                                          style: GoogleFonts.balooBhai2(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropdownValue = newValue!;
+                                    });
+                                  },
+                                ),
+                              ),
                             ),
                             //categories dropdown #end
                           ],
@@ -104,16 +130,38 @@ class _DataState extends State<Data> {
                       //date and categories selectors #end
                       //amount input #start
                       Container(
-                        margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+                        margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         height: 70,
-                        width: _screenWidth / 2,
+                        width: _screenWidth / 1.5,
                         child: TextFormField(
+                          cursorColor: Colors.black,
                           decoration: InputDecoration(
-                              icon: const Icon(Icons.currency_rupee),
-                              labelText: 'amount',
+                              filled: true,
+                              fillColor: Colors.grey,
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[350]!,width: 0.01)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[350]!)),
+                              icon: const Icon(Icons.currency_rupee,
+                                  color: Colors.black),
+                              label: Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                child: Text(
+                                  '*amount',
+                                  style: GoogleFonts.balooBhai2(
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black,
+                                      fontSize: 20),
+                                ),
+                              ),
                               labelStyle: GoogleFonts.balooBhai2(
                                 fontSize: 20,
-                                color: Colors.black54,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black,
                               )),
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
@@ -124,15 +172,36 @@ class _DataState extends State<Data> {
                       //amount input #end
                       //description input #start
                       Container(
+                        margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         height: 70,
-                        width: _screenWidth/2,
+                        width: _screenWidth / 1.5,
                         child: TextFormField(
+                          cursorColor: Colors.black,
                           decoration: InputDecoration(
-                              icon: const Icon(Icons.description),
-                              labelText: 'description if any',
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: const BorderSide(
+                                      color: Colors.grey, width: 5)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: const BorderSide(
+                                      color: Colors.grey, width: 5)),
+                              icon: const Icon(Icons.description,
+                                  color: Colors.black),
+                              label: Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                child: Text(
+                                  'description if any',
+                                  style: GoogleFonts.balooBhai2(
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black,
+                                      fontSize: 20),
+                                ),
+                              ),
                               labelStyle: GoogleFonts.balooBhai2(
                                 fontSize: 20,
-                                color: Colors.black54,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black,
                               )),
                         ),
                       ),
@@ -142,7 +211,21 @@ class _DataState extends State<Data> {
                         onPressed: () {
                           setState(() {});
                         },
-                        child: Text('add'),
+                        child: Container(
+                          width: _screenWidth / 4.5,
+                          decoration: BoxDecoration(
+                              color: Colors.grey[600],
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                                child: Text(
+                              'add',
+                              style: GoogleFonts.balooBhai2(
+                                  color: Colors.white, fontSize: 20),
+                            )),
+                          ),
+                        ),
                       ),
                       //add button #end
                     ],

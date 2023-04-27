@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 //date formatter import
 import 'package:intl/intl.dart';
@@ -23,6 +24,7 @@ class _DataState extends State<Data> {
 
   //Functions #start
   void _datePicker() {
+    print(MediaQuery.of(context).size.width);
     showDatePicker(
             context: context,
             initialDate: DateTime.now(),
@@ -39,6 +41,7 @@ class _DataState extends State<Data> {
   //Functions #end
   @override
   Widget build(BuildContext context) {
+    double _screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       //prevents overflow error when keyboard pops up in mobile devices
       resizeToAvoidBottomInset: false,
@@ -102,12 +105,16 @@ class _DataState extends State<Data> {
                       //amount input #start
                       Container(
                         margin: const EdgeInsets.fromLTRB(50, 0, 50, 0),
-                        height: 50,
-                        width: 200,
+                        height: 70,
+                        width: _screenWidth / 2,
                         child: TextFormField(
-                          decoration: const InputDecoration(
-                              icon: Icon(Icons.currency_rupee),
-                              labelText: 'amount'),
+                          decoration: InputDecoration(
+                              icon: const Icon(Icons.currency_rupee),
+                              labelText: 'amount',
+                              labelStyle: GoogleFonts.balooBhai2(
+                                fontSize: 20,
+                                color: Colors.black54,
+                              )),
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
@@ -116,7 +123,19 @@ class _DataState extends State<Data> {
                       ),
                       //amount input #end
                       //description input #start
-                      TextFormField(),
+                      Container(
+                        height: 70,
+                        width: _screenWidth/2,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              icon: const Icon(Icons.description),
+                              labelText: 'description if any',
+                              labelStyle: GoogleFonts.balooBhai2(
+                                fontSize: 20,
+                                color: Colors.black54,
+                              )),
+                        ),
+                      ),
                       //description input #end
                       //add button #start
                       TextButton(

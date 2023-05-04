@@ -40,6 +40,7 @@ class CategoriesCard extends State<Categories> {
               ),
             ),
             //icon #end
+            //category name #start
             Text(
               widget.name,
               style: GoogleFonts.balooBhai2(
@@ -47,7 +48,51 @@ class CategoriesCard extends State<Categories> {
                 letterSpacing: 5,
               ),
             ),
-            Text(widget.amount),
+            //category name #end
+            //amount + pop up menu #start
+            Row(
+              children: [
+                //category amount #start
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(widget.amount),
+                ),
+                //category amount #end
+                //pop up menu button #start
+                PopupMenuButton<int>(
+                  itemBuilder: (context) => [
+                    //pop up menu 1st item
+                    const PopupMenuItem(
+                      value: 1,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Icon(Icons.edit),
+                          ),
+                          Text('Edit'),
+                        ],
+                      ),
+                    ),
+                    //pop up menu 2nd item
+                    const PopupMenuItem(
+                      value: 2,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Icon(Icons.delete),
+                          ),
+                          Text('Delete'),
+                        ],
+                      ),
+                    )
+                  ],
+                )
+                //pop up menu button #end
+              ],
+            )
+            //amount + pop up menu #start
           ],
         ),
       ),

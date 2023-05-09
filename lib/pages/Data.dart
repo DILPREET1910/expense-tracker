@@ -18,7 +18,22 @@ class Data extends StatefulWidget {
 class _DataState extends State<Data> {
   //Variables #start
   DateTime _datePicked = DateTime.now();
-  String dropdownValue = '*categories';
+  String dropdownValue = 'mess';
+
+  late TextEditingController date;
+  late TextEditingController category;
+  late TextEditingController amount;
+  late TextEditingController description;
+
+  @override
+  void initState() {
+    date = TextEditingController(
+        text: DateFormat('dd-MMM-yyyy').format(DateTime.now()));
+    category = TextEditingController(text: dropdownValue);
+    amount = TextEditingController();
+    description = TextEditingController();
+    super.initState();
+  }
 
   //Variables #end
 
@@ -34,6 +49,7 @@ class _DataState extends State<Data> {
       setState(() {
         _datePicked = value!;
         globals.dateText = DateFormat('dd-MMM-yyyy').format(_datePicked);
+        date = TextEditingController(text: globals.dateText);
       });
     });
   }
@@ -118,6 +134,8 @@ class _DataState extends State<Data> {
                                   onChanged: (String? newValue) {
                                     setState(() {
                                       dropdownValue = newValue!;
+                                      category = TextEditingController(
+                                          text: dropdownValue);
                                     });
                                   },
                                 ),
@@ -134,14 +152,15 @@ class _DataState extends State<Data> {
                         height: 70,
                         width: _screenWidth / 1.5,
                         child: TextFormField(
+                          controller: amount,
                           cursorColor: Colors.black,
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: Colors.grey,
                               focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[350]!,width: 0.01)),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[350]!, width: 0.01)),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20),
                                   borderSide:
@@ -176,6 +195,7 @@ class _DataState extends State<Data> {
                         height: 70,
                         width: _screenWidth / 1.5,
                         child: TextFormField(
+                          controller: description,
                           cursorColor: Colors.black,
                           decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
@@ -209,7 +229,13 @@ class _DataState extends State<Data> {
                       //add button #start
                       TextButton(
                         onPressed: () {
-                          setState(() {});
+                          setState(() {
+                            print(category);
+                            print('date = ${date.text}');
+                            print('category = ${category.text}');
+                            print('amount = ${amount.text}');
+                            print('description = ${description.text}');
+                          });
                         },
                         child: Container(
                           width: _screenWidth / 4.5,

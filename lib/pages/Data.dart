@@ -16,26 +16,38 @@ class Data extends StatefulWidget {
 }
 
 class _DataState extends State<Data> {
-  //Variables #start
+  //START: Variables
   DateTime _datePicked = DateTime.now();
   String dropdownValue = 'mess';
 
-  late TextEditingController date;
-  late TextEditingController category;
-  late TextEditingController amount;
-  late TextEditingController description;
+  //data entry variables
+  late TextEditingController _date;
+  late TextEditingController _category;
+  late TextEditingController _amount;
+  late TextEditingController _description;
 
+  //Initialise data entry variables
   @override
   void initState() {
-    date = TextEditingController(
+    _date = TextEditingController(
         text: DateFormat('dd-MMM-yyyy').format(DateTime.now()));
-    category = TextEditingController(text: dropdownValue);
-    amount = TextEditingController();
-    description = TextEditingController();
+    _category = TextEditingController(text: dropdownValue);
+    _amount = TextEditingController();
+    _description = TextEditingController();
     super.initState();
   }
 
-  //Variables #end
+  //Dispose data Entry variables
+  @override
+  void dispose() {
+    _date.dispose();
+    _category.dispose();
+    _amount.dispose();
+    _description.dispose();
+    super.dispose();
+  }
+
+  //END: Variables
 
   //Functions #start
   void _datePicker() {
@@ -49,7 +61,7 @@ class _DataState extends State<Data> {
       setState(() {
         _datePicked = value!;
         globals.dateText = DateFormat('dd-MMM-yyyy').format(_datePicked);
-        date = TextEditingController(text: globals.dateText);
+        _date = TextEditingController(text: globals.dateText);
       });
     });
   }
@@ -134,7 +146,7 @@ class _DataState extends State<Data> {
                                   onChanged: (String? newValue) {
                                     setState(() {
                                       dropdownValue = newValue!;
-                                      category = TextEditingController(
+                                      _category = TextEditingController(
                                           text: dropdownValue);
                                     });
                                   },
@@ -152,7 +164,7 @@ class _DataState extends State<Data> {
                         height: 70,
                         width: _screenWidth / 1.5,
                         child: TextFormField(
-                          controller: amount,
+                          controller: _amount,
                           cursorColor: Colors.black,
                           decoration: InputDecoration(
                               filled: true,
@@ -195,7 +207,7 @@ class _DataState extends State<Data> {
                         height: 70,
                         width: _screenWidth / 1.5,
                         child: TextFormField(
-                          controller: description,
+                          controller: _description,
                           cursorColor: Colors.black,
                           decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(
@@ -230,11 +242,11 @@ class _DataState extends State<Data> {
                       TextButton(
                         onPressed: () {
                           setState(() {
-                            print(category);
-                            print('date = ${date.text}');
-                            print('category = ${category.text}');
-                            print('amount = ${amount.text}');
-                            print('description = ${description.text}');
+                            print(_category);
+                            print('date = ${_date.text}');
+                            print('category = ${_category.text}');
+                            print('amount = ${_amount.text}');
+                            print('description = ${_description.text}');
                           });
                         },
                         child: Container(

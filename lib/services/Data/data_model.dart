@@ -1,8 +1,9 @@
-class DataFields {
-  static const String date = 'Date';
-  static const String category = 'Category';
-  static const String description = 'Description (if any)';
-  static const String amount = 'Amount';
+import 'package:expense_tracker/api/Google%20Sheets/user_sheet_api.dart';
 
-  static List<String> getData() => [date, category, description, amount];
+class DataFields {
+  static dataEntry(
+      String date, String category, String amount, String description) {
+    List<String> data = [date, category, description, amount];
+    UserSheetsApi.insert(data);
+  }
 }

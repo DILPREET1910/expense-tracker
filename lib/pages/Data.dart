@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+//import Data services
+import 'package:expense_tracker/services/Data/data_model.dart';
+
 //date formatter import
 import 'package:intl/intl.dart';
 
@@ -249,11 +252,13 @@ class _DataState extends State<Data> {
                             _amount.text.isEmpty
                                 ? _validateAmount = true
                                 : _validateAmount = false;
-                            print(_category);
-                            print('date = ${_date.text}');
-                            print('category = ${_category.text}');
-                            print('amount = ${_amount.text}');
-                            print('description = ${_description.text}');
+                            // print(_category);
+                            // print('date = ${_date.text}');
+                            // print('category = ${_category.text}');
+                            // print('amount = ${_amount.text}');
+                            // print('description = ${_description.text}');
+                            DataFields.dataEntry(_date.text, _category.text,
+                                _amount.text, _description.text);
                           });
                         },
                         child: Container(

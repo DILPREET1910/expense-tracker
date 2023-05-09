@@ -19,12 +19,19 @@ class UserSheetsApi {
 ''';
   static final _spreadsheetId = '1cYM1BuixGPp5U_CLurY_i0tuyxzB_zWvU-yDetnpwTk';
   static final _gsheets = GSheets(_credentials);
-  static Worksheet? _userSheet;
+  static Worksheet? _dataSheet;
   static Worksheet? _categoriesSheet;
 
   static Future init() async {
-    final spreadsheet = await _gsheets.spreadsheet(_spreadsheetId);
-    _userSheet = await spreadsheet.worksheetByTitle('Data');
-    _categoriesSheet = await spreadsheet.worksheetByTitle('Categories');
+    final spreadsheet =
+        await _gsheets.spreadsheet(_spreadsheetId); //spreadsheet instance
+    _dataSheet = spreadsheet.worksheetByTitle('Data'); //Data worksheet instance
+    _categoriesSheet = spreadsheet
+        .worksheetByTitle('Categories'); //Categories worksheet instance
+  }
+
+  static Future insert(List<String> data) async {
+    init();
+    _dataSheet!.values.appendRow(data);
   }
 }

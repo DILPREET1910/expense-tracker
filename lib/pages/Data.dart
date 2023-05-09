@@ -25,6 +25,7 @@ class _DataState extends State<Data> {
   late TextEditingController _category;
   late TextEditingController _amount;
   late TextEditingController _description;
+  bool _validateAmount = false;
 
   //Initialise data entry variables
   @override
@@ -49,7 +50,7 @@ class _DataState extends State<Data> {
 
   //END: Variables
 
-  //Functions #start
+  //START: Functions
   void _datePicker() {
     print(MediaQuery.of(context).size.width);
     showDatePicker(
@@ -66,7 +67,8 @@ class _DataState extends State<Data> {
     });
   }
 
-  //Functions #end
+  //END: Functions
+
   @override
   Widget build(BuildContext context) {
     double _screenWidth = MediaQuery.of(context).size.width;
@@ -167,6 +169,8 @@ class _DataState extends State<Data> {
                           controller: _amount,
                           cursorColor: Colors.black,
                           decoration: InputDecoration(
+                              errorText:
+                                  _validateAmount ? '*required field' : null,
                               filled: true,
                               fillColor: Colors.grey,
                               focusedBorder: OutlineInputBorder(
@@ -242,6 +246,9 @@ class _DataState extends State<Data> {
                       TextButton(
                         onPressed: () {
                           setState(() {
+                            _amount.text.isEmpty
+                                ? _validateAmount = true
+                                : _validateAmount = false;
                             print(_category);
                             print('date = ${_date.text}');
                             print('category = ${_category.text}');

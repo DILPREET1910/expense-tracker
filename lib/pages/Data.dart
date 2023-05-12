@@ -87,7 +87,7 @@ class _DataState extends State<Data> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            //add data card #start
+            //START: Add data card
             Expanded(
               flex: 3,
               child: Padding(
@@ -107,13 +107,13 @@ class _DataState extends State<Data> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      //date and categories selectors #start
+                      //START: Date and Categories slectors
                       Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            //date selector #start
+                            //START: Date selector
                             Expanded(
                               flex: 1,
                               child: TextButton(
@@ -127,8 +127,8 @@ class _DataState extends State<Data> {
                                 ),
                               ),
                             ),
-                            //date selector #end
-                            //categories dropdown #start
+                            //END: Date selector
+                            //START: Categories dropdown
                             Expanded(
                               flex: 1,
                               child: DropdownButtonHideUnderline(
@@ -163,12 +163,12 @@ class _DataState extends State<Data> {
                                 ),
                               ),
                             ),
-                            //categories dropdown #end
+                            //END: Categories dropdown
                           ],
                         ),
                       ),
-                      //date and categories selectors #end
-                      //amount input #start
+                      //END: Date and Categories selectors
+                      //START: Amount input
                       Container(
                         margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         height: 70,
@@ -212,8 +212,8 @@ class _DataState extends State<Data> {
                           ],
                         ),
                       ),
-                      //amount input #end
-                      //description input #start
+                      //END: Amount input
+                      //START: Description input
                       Container(
                         margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         height: 70,
@@ -249,8 +249,8 @@ class _DataState extends State<Data> {
                               )),
                         ),
                       ),
-                      //description input #end
-                      //add button #start
+                      //END: Description input
+                      //START: Add button
                       TextButton(
                         onPressed: () {
                           setState(() {
@@ -282,14 +282,14 @@ class _DataState extends State<Data> {
                           ),
                         ),
                       ),
-                      //add button #end
+                      //END: Add button
                     ],
                   ),
                 ),
               ),
             ),
-            //add data card #end
-            //data entries list #start
+            //END: Add data card
+            //START: Data entries card
             Expanded(
               flex: 4,
               child: Padding(
@@ -319,7 +319,7 @@ class _DataState extends State<Data> {
                 ),
               ),
             ),
-            //data entries list #end
+            //END: Data entries card
           ],
         ),
       ),

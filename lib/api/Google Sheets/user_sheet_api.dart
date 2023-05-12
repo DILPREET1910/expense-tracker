@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gsheets/gsheets.dart';
 import 'package:expense_tracker/globalVariables.dart' as globals;
+import '../../services/Data/data_model.dart';
 
 class UserSheetsApi {
   static const _credentials = r'''
@@ -21,6 +22,9 @@ class UserSheetsApi {
   static final _gsheets = GSheets(_credentials);
   static Worksheet? _dataSheet;
   static Worksheet? _categoriesSheet;
+  static var dataEntries;
+  static List<dynamic>? listOfDataEntries;
+  static List<dynamic>? reversed;
 
   static Future init() async {
     final spreadsheet =
@@ -28,10 +32,22 @@ class UserSheetsApi {
     _dataSheet = spreadsheet.worksheetByTitle('Data'); //Data worksheet instance
     _categoriesSheet = spreadsheet
         .worksheetByTitle('Categories'); //Categories worksheet instance
+
+    //get a list of all data entries
+    dataEntries = await _dataSheet?.values.map.allRows();
+    listOfDataEntries = dataEntries?.map(User.fromJson).toList();
+    reversed = listOfDataEntries?.reversed.toList();
+  }
+
+  static Future update() async {
+    dataEntries = await _dataSheet?.values.map.allRows();
+    listOfDataEntries = await dataEntries?.map(User.fromJson).toList();
+    reversed = listOfDataEntries?.reversed.toList();
   }
 
   static Future insert(List<String> data) async {
-    init();
-    _dataSheet!.values.appendRow(data);
+    await init();
+    await _dataSheet!.values.appendRow(data);
+    await update();
   }
 }

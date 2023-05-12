@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-//import Data services
+//pub.dev plugins
+import 'package:google_fonts/google_fonts.dart'; //google fonts
+import 'package:intl/intl.dart'; //date formatter
+
+//import lib/services
 import 'package:expense_tracker/services/Data/data_model.dart';
 
-//date formatter import
-import 'package:intl/intl.dart';
+//import lib/api
+import 'package:expense_tracker/api/Google Sheets/user_sheet_api.dart';
 
-//import global variable
+//import lib files
 import 'package:expense_tracker/globalVariables.dart' as globals;
 
 class Data extends StatefulWidget {
@@ -55,7 +58,6 @@ class _DataState extends State<Data> {
 
   //START: Functions
   void _datePicker() {
-    print(MediaQuery.of(context).size.width);
     showDatePicker(
             context: context,
             initialDate: DateTime.now(),
@@ -293,12 +295,17 @@ class _DataState extends State<Data> {
                   elevation: 50,
                   shadowColor: Colors.black,
                   color: Colors.grey[500],
-                  child: Column(
-                    children: [
-                      Text('entry number 1'),
-                      Text('entry number 2'),
-                      Text('entry number 3'),
-                    ],
+                  child: ListView.builder(
+                    itemCount: UserSheetsApi.reversed?.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Text(UserSheetsApi.reversed?[index].date +
+                          " " +
+                          UserSheetsApi.reversed?[index].category +
+                          " " +
+                          UserSheetsApi.reversed?[index].description +
+                          " " +
+                          UserSheetsApi.reversed?[index].amount);
+                    },
                   ),
                 ),
               ),

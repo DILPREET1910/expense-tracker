@@ -5,11 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart'; //google fonts
 import 'package:intl/intl.dart'; //date formatter
 
+//import lib/api
+import 'package:expense_tracker/api/Google Sheets/user_sheet_api.dart';
+
 //import lib/services
 import 'package:expense_tracker/services/Data/data_model.dart';
 
-//import lib/api
-import 'package:expense_tracker/api/Google Sheets/user_sheet_api.dart';
+//import lib/widgets
+import 'package:expense_tracker/widgets/dataEntries.dart';
 
 //import lib files
 import 'package:expense_tracker/globalVariables.dart' as globals;
@@ -295,17 +298,23 @@ class _DataState extends State<Data> {
                   elevation: 50,
                   shadowColor: Colors.black,
                   color: Colors.grey[500],
-                  child: ListView.builder(
-                    itemCount: UserSheetsApi.reversed?.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Text(UserSheetsApi.reversed?[index].date +
-                          " " +
-                          UserSheetsApi.reversed?[index].category +
-                          " " +
-                          UserSheetsApi.reversed?[index].description +
-                          " " +
-                          UserSheetsApi.reversed?[index].amount);
-                    },
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(19)),
+                    color: Colors.blueGrey[100],
+                    elevation: 5,
+                    shadowColor: Colors.black12,
+                    child: ListView.builder(
+                      itemCount: UserSheetsApi.reversed?.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return DataEntries(
+                            date: UserSheetsApi.reversed?[index].date,
+                            category: UserSheetsApi.reversed?[index].category,
+                            description:
+                                UserSheetsApi.reversed?[index].description,
+                            amount: UserSheetsApi.reversed?[index].amount);
+                      },
+                    ),
                   ),
                 ),
               ),

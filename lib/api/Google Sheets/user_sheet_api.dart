@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:gsheets/gsheets.dart';
-import 'package:expense_tracker/globalVariables.dart' as globals;
 import '../../services/Data/data_model.dart';
 
 class UserSheetsApi {

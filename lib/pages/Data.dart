@@ -79,6 +79,15 @@ class _DataState extends State<Data> {
 
   @override
   Widget build(BuildContext context) {
+    List<DataRow> rows = [];
+    for (int i = 0; i < UserSheetsApi.reversed!.length; i++) {
+      rows.add(DataEntries.dataEntries(
+          UserSheetsApi.reversed?[i].date,
+          UserSheetsApi.reversed?[i].category,
+          UserSheetsApi.reversed?[i].description,
+          UserSheetsApi.reversed?[i].amount));
+    }
+
     double _screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       //prevents overflow error when keyboard pops up in mobile devices
@@ -304,16 +313,21 @@ class _DataState extends State<Data> {
                     color: Colors.blueGrey[100],
                     elevation: 5,
                     shadowColor: Colors.black12,
-                    child: ListView.builder(
-                      itemCount: UserSheetsApi.reversed?.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return DataEntries(
-                            date: UserSheetsApi.reversed?[index].date,
-                            category: UserSheetsApi.reversed?[index].category,
-                            description:
-                                UserSheetsApi.reversed?[index].description,
-                            amount: UserSheetsApi.reversed?[index].amount);
-                      },
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: DataTable(
+                          columns: [
+                            DataColumn(label: Text('Date')),
+                            DataColumn(label: Text('Category')),
+                            DataColumn(label: Text('Description')),
+                            DataColumn(label: Text('Amount')),
+                            DataColumn(label: Text(''))
+                          ],
+                          rows: rows,
+                        ),
+                      ),
                     ),
                   ),
                 ),

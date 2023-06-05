@@ -7,6 +7,7 @@ import 'package:expense_tracker/pages/Settings.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
+  // check for independent of main branch
   WidgetsFlutterBinding.ensureInitialized();
   await UserSheetsApi.init();
   runApp(MaterialApp(

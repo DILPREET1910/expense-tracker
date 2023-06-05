@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 void main() async {
   // check for independent of main branch
+  // github conflict with new branch - responsive
   WidgetsFlutterBinding.ensureInitialized();
   await UserSheetsApi.init();
   runApp(MaterialApp(

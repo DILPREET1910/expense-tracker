@@ -1,3 +1,5 @@
+import 'package:expense_tracker/widgets/dataAdderCard.dart';
+import 'package:expense_tracker/widgets/dataEntriesCard.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/widgets/drawer.dart';
 
@@ -17,6 +19,13 @@ class _MobileState extends State<Mobile> {
         child: Scaffold(
             appBar: WidgetsAppBar(height: 50),
             backgroundColor: Colors.grey[300],
-            drawer: WidgetsDrawer()));
+            drawer: WidgetsDrawer(),
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(child: WidgetsDataAdderCard()),
+                Expanded(child: WidgetsDataEntriesCard())
+              ],
+            )));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:expense_tracker/widgets/appBar.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/drawer.dart';
@@ -14,11 +15,8 @@ class _DesktopState extends State<Desktop> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.grey[900],
-          ),
-          backgroundColor: Colors.blueGrey[100],
-          body: WidgetsDrawer(),
-        ));
+            appBar: WidgetsAppBar(height: 40),
+            backgroundColor: Colors.blueGrey[100],
+            body: WidgetsDrawer()));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WidgetsDrawer extends StatefulWidget {
   const WidgetsDrawer({Key? key}) : super(key: key);
@@ -11,7 +12,41 @@ class _WidgetsDrawerState extends State<WidgetsDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey[400],
+      elevation: 0,
+      child: Column(
+        children: [
+          DrawerHeader(child: Icon(Icons.settings)),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text(
+              "DASHBOARD",
+              style: GoogleFonts.balooBhai2(fontSize: 20, letterSpacing: 5),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.message),
+            title: Text(
+              "MESSAGE",
+              style: GoogleFonts.balooBhai2(fontSize: 20, letterSpacing: 5),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text(
+              "SETTINGS",
+              style: GoogleFonts.balooBhai2(fontSize: 20, letterSpacing: 5),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text(
+              "LOGOUT",
+              style: GoogleFonts.balooBhai2(fontSize: 20, letterSpacing: 5),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

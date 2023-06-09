@@ -16,7 +16,7 @@ class _MobileState extends State<Mobile> {
     return SafeArea(
         child: Scaffold(
             appBar: WidgetsAppBar(height: 50),
-            backgroundColor: Colors.blueGrey[100],
+            backgroundColor: Colors.grey[300],
             drawer: WidgetsDrawer()));
   }
 }

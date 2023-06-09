@@ -16,7 +16,7 @@ class _DesktopState extends State<Desktop> {
     return SafeArea(
         child: Scaffold(
             appBar: WidgetsAppBar(height: 40),
-            backgroundColor: Colors.blueGrey[100],
+            backgroundColor: Colors.grey[400],
             body: WidgetsDrawer()));
   }
 }

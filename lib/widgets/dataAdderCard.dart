@@ -17,7 +17,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
             width: 4,
           ),
           borderRadius: BorderRadius.circular(15)),
-      elevation: 50,
+      elevation: 0,
       shadowColor: Colors.black,
       color: Colors.grey,
       child: Column(

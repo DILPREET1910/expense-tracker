@@ -1,3 +1,4 @@
+import 'package:expense_tracker/pages/dashboard.dart';
 import 'package:expense_tracker/widgets/appBar.dart';
 import 'package:expense_tracker/widgets/dataAdderCard.dart';
 import 'package:expense_tracker/widgets/dataEntriesCard.dart';
@@ -20,6 +21,7 @@ class _DesktopState extends State<Desktop> {
             appBar: WidgetsAppBar(height: 40),
             backgroundColor: Colors.grey[400],
             body: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(flex: 1, child: WidgetsDrawer()),
                 Expanded(
@@ -28,9 +30,10 @@ class _DesktopState extends State<Desktop> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Expanded(child: WidgetsDataAdderCard()),
-                        Expanded(child: WidgetsDataEntriesCard())
+                        Expanded(child: WidgetsDataEntriesCard()),
                       ],
                     )),
+                Expanded(flex: 1, child: WidgetsDashBoard())
               ],
             )));
   }

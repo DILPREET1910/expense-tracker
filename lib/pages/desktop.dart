@@ -19,6 +19,8 @@ class _DesktopState extends State<Desktop> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            //prevents overflow error when keyboard pops up in mobile devices
             backgroundColor: Colors.grey[400],
             body: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,

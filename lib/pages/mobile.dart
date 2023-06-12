@@ -17,6 +17,8 @@ class _MobileState extends State<Mobile> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            //prevents overflow error when keyboard pops up in mobile devices
             appBar: WidgetsAppBar(height: 50),
             backgroundColor: Colors.grey[300],
             drawer: WidgetsDrawer(),

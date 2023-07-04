@@ -126,9 +126,29 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                 ),
               ),
             ),
-          )
+          ),
           //END: Description text input
           //START: Add button
+          TextButton(
+            onPressed: () {},
+            child: Container(
+              margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 5,
+                  0, MediaQuery.of(context).size.width / 5, 0),
+              height: 50,
+              decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.circular(20)),
+              child: Center(
+                child: Text(
+                  "add",
+                  style: GoogleFonts.balooBhai2(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20),
+                ),
+              ),
+            ),
+          )
           //END: Add button
         ],
       ),

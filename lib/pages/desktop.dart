@@ -21,6 +21,7 @@ class _DesktopState extends State<Desktop> {
         child: Scaffold(
             resizeToAvoidBottomInset: false,
             //prevents overflow error when keyboard pops up in mobile devices
+            appBar: WidgetsAppBar(height: 50),
             backgroundColor: Colors.grey[400],
             body: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,

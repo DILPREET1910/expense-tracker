@@ -1,3 +1,4 @@
+import 'package:expense_tracker/widgets/appBar.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/drawer.dart';
@@ -17,6 +18,7 @@ class _TabletState extends State<Tablet> {
         child: Scaffold(
             resizeToAvoidBottomInset: false,
             //prevents overflow error when keyboard pops up in mobile devices
+            appBar: WidgetsAppBar(height: 50),
             backgroundColor: Colors.grey[400],
             body: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,

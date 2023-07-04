@@ -20,7 +20,7 @@ class _MobileState extends State<Mobile> {
             resizeToAvoidBottomInset: false,
             //prevents overflow error when keyboard pops up in mobile devices
             appBar: WidgetsAppBar(height: 50),
-            backgroundColor: Colors.grey[300],
+            backgroundColor: Colors.grey[400],
             drawer: WidgetsDrawer(),
             body: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,

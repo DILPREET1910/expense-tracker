@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^4.0.3
   intl: ^0.18.1
   gsheets: ^0.4.2
+  firebase_core: ^2.14.0
 
 dev_dependencies:
   flutter_test:

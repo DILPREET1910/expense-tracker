@@ -6,7 +6,14 @@ import 'package:expense_tracker/pages/tablet.dart';
 import 'package:expense_tracker/pages/desktop.dart';
 import 'package:expense_tracker/pages/responsive_layout.dart';
 
-void main() {
+//firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+void main() async{
+  //initialise firebase
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 

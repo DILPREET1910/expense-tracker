@@ -1,3 +1,4 @@
+import 'package:expense_tracker/pages/loginPage.dart';
 import 'package:flutter/material.dart';
 
 // import lib/pages
@@ -10,7 +11,7 @@ import 'package:expense_tracker/pages/responsive_layout.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() async{
+void main() async {
   //initialise firebase
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // home: LoginPage(),
       home: ResponsiveLayout(
         mobile: Mobile(),
         tablet: Tablet(),

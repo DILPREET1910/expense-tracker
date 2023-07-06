@@ -1,3 +1,4 @@
+import 'package:expense_tracker/widgets/textFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -59,74 +60,22 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
           ),
           //END: Date and Category picker
           //START: Amount text input
-          Container(
-            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 7,
-                0, MediaQuery.of(context).size.width / 7, 0),
-            height: 65,
-            decoration: BoxDecoration(
-                color: Colors.grey,
-                border: Border.all(width: 3, color: Colors.grey[900]!),
-                borderRadius: BorderRadius.circular(40)),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 5, 15, 2),
-              child: TextFormField(
-                controller: _amountTextController,
-                cursorColor: Colors.black,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  icon: const Icon(
-                    Icons.currency_rupee,
-                    color: Colors.black,
-                  ),
-                  label: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: Text(
-                      "*amount",
-                      style: GoogleFonts.balooBhai2(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                          fontSize: 20),
-                    ),
-                  ),
-                ),
+          WidgetsTextFormFields(
+              label: "*amount",
+              icon: const Icon(
+                Icons.currency_rupee,
+                color: Colors.black,
               ),
-            ),
-          ),
+              controller: _amountTextController),
           //END: Amount text input
           //START: Description text input
-          Container(
-            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 7,
-                0, MediaQuery.of(context).size.width / 7, 0),
-            height: 65,
-            decoration: BoxDecoration(
-                color: Colors.grey,
-                border: Border.all(width: 3, color: Colors.grey[900]!),
-                borderRadius: BorderRadius.circular(40)),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 5, 15, 2),
-              child: TextFormField(
-                controller: _descriptionTextController,
-                cursorColor: Colors.black,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  icon: const Icon(
-                    Icons.description_outlined,
-                    color: Colors.black,
-                  ),
-                  label: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: Text(
-                      "description if any",
-                      style: GoogleFonts.balooBhai2(
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
-                          fontSize: 20),
-                    ),
-                  ),
-                ),
+          WidgetsTextFormFields(
+              label: "description if any",
+              icon: const Icon(
+                Icons.description_outlined,
+                color: Colors.black,
               ),
-            ),
-          ),
+              controller: _descriptionTextController),
           //END: Description text input
           //START: Add button
           Container(

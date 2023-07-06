@@ -5,12 +5,15 @@ class WidgetsTextFormFields extends StatelessWidget {
   final String label;
   final Icon icon;
   final TextEditingController controller;
+  final bool? obscure;
 
-  const WidgetsTextFormFields(
-      {super.key,
-      required this.label,
-      required this.icon,
-      required this.controller});
+  const WidgetsTextFormFields({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.controller,
+    this.obscure,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,7 @@ class WidgetsTextFormFields extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(15, 5, 15, 2),
         child: TextFormField(
+          obscureText: (obscure == null) ? false : obscure!,
           controller: controller,
           cursorColor: Colors.black,
           decoration: InputDecoration(

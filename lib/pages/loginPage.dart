@@ -1,5 +1,6 @@
 import 'package:expense_tracker/widgets/textButton.dart';
 import 'package:expense_tracker/widgets/textFormField.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,6 +15,13 @@ class _LoginPageState extends State<LoginPage> {
   //TextField controllers
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _passwordTextController = TextEditingController();
+
+  //login function
+  Future login() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailTextController.text.trim(),
+        password: _passwordTextController.text.trim());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                 //START: login button
                 const SizedBox(height: 15),
                 WidgetsTextButton(
-                  onPressed: () {},
+                  onPressed: login,
                   label: "Login",
                 ),
                 //END: login button

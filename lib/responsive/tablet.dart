@@ -2,7 +2,7 @@ import 'package:expense_tracker/widgets/appBar.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/drawer.dart';
-import 'dataEntry.dart';
+import '../pages/dataEntry.dart';
 
 class Tablet extends StatefulWidget {
   const Tablet({Key? key}) : super(key: key);

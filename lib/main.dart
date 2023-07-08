@@ -2,10 +2,10 @@ import 'package:expense_tracker/pages/loginPage.dart';
 import 'package:flutter/material.dart';
 
 // import lib/pages
-import 'package:expense_tracker/pages/mobile.dart';
-import 'package:expense_tracker/pages/tablet.dart';
-import 'package:expense_tracker/pages/desktop.dart';
-import 'package:expense_tracker/pages/responsive_layout.dart';
+import 'package:expense_tracker/responsive/mobile.dart';
+import 'package:expense_tracker/responsive/tablet.dart';
+import 'package:expense_tracker/responsive/desktop.dart';
+import 'package:expense_tracker/responsive/responsive_layout.dart';
 
 //firebase
 import 'package:firebase_core/firebase_core.dart';

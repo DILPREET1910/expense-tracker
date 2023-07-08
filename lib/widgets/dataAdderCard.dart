@@ -1,3 +1,4 @@
+import 'package:expense_tracker/widgets/textButton.dart';
 import 'package:expense_tracker/widgets/textFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,26 +79,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
               controller: _descriptionTextController),
           //END: Description text input
           //START: Add button
-          Container(
-            margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width / 5,
-                0, MediaQuery.of(context).size.width / 5, 0),
-            height: 50,
-            decoration: BoxDecoration(
-                color: Colors.grey[900],
-                borderRadius: BorderRadius.circular(20)),
-            child: TextButton(
-              onPressed: () {},
-              child: Center(
-                child: Text(
-                  "add",
-                  style: GoogleFonts.balooBhai2(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20),
-                ),
-              ),
-            ),
-          )
+          WidgetsTextButton(onPressed: () {}, label: "add")
           //END: Add button
         ],
       ),

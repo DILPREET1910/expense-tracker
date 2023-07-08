@@ -23,9 +23,15 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -45,39 +51,19 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyCorUC8upQElI9xJ4P2psyKqcL7kXkELh0',
-    appId: '1:514992683018:web:5eadbae38c2009679947f3',
+    appId: '1:514992683018:web:5229a9eea020205a9947f3',
     messagingSenderId: '514992683018',
     projectId: 'expense-tracker-f5f8b',
     authDomain: 'expense-tracker-f5f8b.firebaseapp.com',
     storageBucket: 'expense-tracker-f5f8b.appspot.com',
-    measurementId: 'G-YBWLC2GMCG',
+    measurementId: 'G-EBNFMPEW3Z',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyB_v-Dt9NuUiwoEJV_vaGjDjnY3ZcjNrWs',
-    appId: '1:514992683018:android:3f67d656a57272569947f3',
+    appId: '1:514992683018:android:a96065676b1f88359947f3',
     messagingSenderId: '514992683018',
     projectId: 'expense-tracker-f5f8b',
     storageBucket: 'expense-tracker-f5f8b.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBonPCND9-nEcucwKLGHcgIo9Kguwgixg8',
-    appId: '1:514992683018:ios:f1aa507af8962dbd9947f3',
-    messagingSenderId: '514992683018',
-    projectId: 'expense-tracker-f5f8b',
-    storageBucket: 'expense-tracker-f5f8b.appspot.com',
-    iosClientId: '514992683018-ds56iukar4ob8g27pfh66cp2sotloddb.apps.googleusercontent.com',
-    iosBundleId: 'com.example.expenseTracker',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBonPCND9-nEcucwKLGHcgIo9Kguwgixg8',
-    appId: '1:514992683018:ios:3e9bf46a44f6f34d9947f3',
-    messagingSenderId: '514992683018',
-    projectId: 'expense-tracker-f5f8b',
-    storageBucket: 'expense-tracker-f5f8b.appspot.com',
-    iosClientId: '514992683018-f3b0u5bl4i06790nk28rf40com3uqoha.apps.googleusercontent.com',
-    iosBundleId: 'com.example.expenseTracker.RunnerTests',
   );
 }

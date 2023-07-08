@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:514992683018:android:3f67d656a57272569947f3",
+        "mobilesdk_app_id": "1:514992683018:android:a96065676b1f88359947f3",
         "android_client_info": {
           "package_name": "com.example.expense_tracker"
         }
@@ -29,6 +29,13 @@
             {
               "client_id": "514992683018-qob1hte9q26tvsti2p0hmrqptl7382na.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "514992683018-ds56iukar4ob8g27pfh66cp2sotloddb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.expenseTracker"
+              }
             }
           ]
         }

@@ -24,12 +24,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: LoginPage(),
-      home: ResponsiveLayout(
-        mobile: Mobile(),
-        tablet: Tablet(),
-        desktop: Desktop(),
-      ),
+      home: LoginPage(),
+      // home: ResponsiveLayout(
+      //   mobile: Mobile(),
+      //   tablet: Tablet(),
+      //   desktop: Desktop(),
+      // ),
     );
   }
 }

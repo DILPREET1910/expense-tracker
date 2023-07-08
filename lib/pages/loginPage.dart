@@ -76,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                   label: "Login",
                 ),
                 //END: login button
-                //START: Not a user? Sign in
+                //START: Not a user? Sign up
                 const SizedBox(height: 25),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -87,13 +87,13 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.bold, color: Colors.black),
                     ),
                     Text(
-                      "Register now",
+                      "Sign up",
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.blue),
                     ),
                   ],
                 )
-                //END: Not a user? Sign in
+                //END: Not a user? Sign up
               ],
             ),
           ),

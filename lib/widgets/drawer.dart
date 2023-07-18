@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,6 +10,10 @@ class WidgetsDrawer extends StatefulWidget {
 }
 
 class _WidgetsDrawerState extends State<WidgetsDrawer> {
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -39,6 +44,7 @@ class _WidgetsDrawerState extends State<WidgetsDrawer> {
             ),
           ),
           ListTile(
+            onTap: logout,
             leading: Icon(Icons.logout),
             title: Text(
               "LOGOUT",

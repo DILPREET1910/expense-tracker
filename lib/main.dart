@@ -1,12 +1,9 @@
-import 'package:expense_tracker/pages/loginPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-// import lib/pages
-import 'package:expense_tracker/responsive/mobile.dart';
-import 'package:expense_tracker/responsive/tablet.dart';
-import 'package:expense_tracker/responsive/desktop.dart';
-import 'package:expense_tracker/responsive/responsive_layout.dart';
+// lib imports
+import 'package:expense_tracker/pages/responsive/responsive_layout.dart';
+import 'package:expense_tracker/pages/authentication/authPage.dart';
 
 //firebase
 import 'package:firebase_core/firebase_core.dart';
@@ -29,15 +26,11 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return MaterialApp(
-              home: ResponsiveLayout(
-                mobile: Mobile(),
-                tablet: Tablet(),
-                desktop: Desktop(),
-              ),
+              home: ResponsiveLayout(),
             );
           } else {
-            return MaterialApp(
-              home: LoginPage(),
+            return const MaterialApp(
+              home: AuthPage(),
             );
           }
         });

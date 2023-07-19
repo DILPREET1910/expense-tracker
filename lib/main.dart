@@ -1,11 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // lib imports
 import 'package:expense_tracker/pages/responsive/responsive_layout.dart';
 import 'package:expense_tracker/pages/authentication/authPage.dart';
 
-//firebase
+//firebase imports
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 

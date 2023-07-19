@@ -85,8 +85,25 @@ class _LoginPageState extends State<LoginPage> {
                     obscure: true,
                     controller: _passwordTextController),
                 //END: password input
+                //START: forgot password
+                const SizedBox(height: 2),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Container(
+                        margin: EdgeInsets.fromLTRB(
+                            0, 0, MediaQuery.of(context).size.width / 6, 0),
+                        child: Text(
+                          "forgot password",
+                          style: GoogleFonts.balooBhai2(
+                              fontWeight: FontWeight.w200,
+                              color: Colors.red.shade900),
+                        )),
+                  ],
+                ),
+                //END: forgot password
                 //START: login button
-                const SizedBox(height: 15),
+                const SizedBox(height: 2),
                 WidgetsTextButton(
                   onPressed: login,
                   label: "Login",

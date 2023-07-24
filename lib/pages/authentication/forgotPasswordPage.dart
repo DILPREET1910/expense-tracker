@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/widgets/textButton.dart';
 import 'package:expense_tracker/widgets/textFormField.dart';
 
+//firebase imports
+import 'package:firebase_auth/firebase_auth.dart';
+
 //google fonts imports
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,7 +22,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final TextEditingController _emailTextController = TextEditingController();
 
   //send email function
-  Future sendEmail() async {}
+  Future sendEmail() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: _emailTextController.text.trim());
+    } on FirebaseException catch (error) {
+      print(error);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

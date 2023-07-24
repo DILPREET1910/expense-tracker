@@ -10,6 +10,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 //google fonts imports
 import 'package:google_fonts/google_fonts.dart';
 
+//spinkit imports
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
 
@@ -23,12 +26,24 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   //send email function
   Future sendEmail() async {
+    //show loading spinkit
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const SpinKitCircle(
+            color: Colors.grey,
+          );
+        });
+
     try {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: _emailTextController.text.trim());
     } on FirebaseException catch (error) {
       print(error);
     }
+
+    //pop spinkit
+    Navigator.of(context).pop();
   }
 
   @override

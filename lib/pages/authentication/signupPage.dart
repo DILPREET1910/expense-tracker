@@ -6,10 +6,12 @@ import 'package:expense_tracker/widgets/textFormField.dart';
 
 //firebase imports
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 //google fonts imports
 import 'package:google_fonts/google_fonts.dart';
+
+//spinkit imports
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SignUpPage extends StatefulWidget {
   final VoidCallback showLoginPage;
@@ -30,9 +32,21 @@ class _SignUpPageState extends State<SignUpPage> {
   //START : Sign Up function
   Future signup() async {
     if (confirmPassword()) {
+      //show loading spinkit
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const SpinKitCircle(
+              color: Colors.grey,
+            );
+          });
+
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailTextController.text.trim(),
           password: _passwordTextController.text.trim());
+
+      //pop spinkit
+      Navigator.of(context).pop();
     }
   }
 

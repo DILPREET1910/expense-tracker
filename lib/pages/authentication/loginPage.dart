@@ -11,6 +11,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 //google fonts imports
 import 'package:google_fonts/google_fonts.dart';
 
+//spinkit imports
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 class LoginPage extends StatefulWidget {
   final VoidCallback showSignInPage;
 
@@ -27,9 +30,21 @@ class _LoginPageState extends State<LoginPage> {
 
   //login function
   Future login() async {
+    //show loading spinkit
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const SpinKitCircle(
+            color: Colors.grey,
+          );
+        });
+
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailTextController.text.trim(),
         password: _passwordTextController.text.trim());
+
+    //pop spinkit
+    Navigator.of(context).pop();
   }
 
   @override

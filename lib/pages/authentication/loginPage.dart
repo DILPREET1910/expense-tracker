@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 //lib imports
+import 'package:expense_tracker/pages/authentication/forgotPasswordPage.dart';
 import 'package:expense_tracker/widgets/textButton.dart';
 import 'package:expense_tracker/widgets/textFormField.dart';
 
@@ -93,11 +94,23 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                         margin: EdgeInsets.fromLTRB(
                             0, 0, MediaQuery.of(context).size.width / 6, 0),
-                        child: Text(
-                          "forgot password",
-                          style: GoogleFonts.balooBhai2(
-                              fontWeight: FontWeight.w200,
-                              color: Colors.red.shade900),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const ForgotPasswordPage();
+                                },
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "forgot password",
+                            style: GoogleFonts.balooBhai2(
+                                fontWeight: FontWeight.w200,
+                                color: Colors.red.shade900),
+                          ),
                         )),
                   ],
                 ),

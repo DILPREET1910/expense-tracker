@@ -55,6 +55,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '514992683018',
     projectId: 'expense-tracker-f5f8b',
     authDomain: 'expense-tracker-f5f8b.firebaseapp.com',
+    databaseURL: 'https://expense-tracker-f5f8b-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'expense-tracker-f5f8b.appspot.com',
     measurementId: 'G-EBNFMPEW3Z',
   );
@@ -64,6 +65,7 @@ class DefaultFirebaseOptions {
     appId: '1:514992683018:android:a96065676b1f88359947f3',
     messagingSenderId: '514992683018',
     projectId: 'expense-tracker-f5f8b',
+    databaseURL: 'https://expense-tracker-f5f8b-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'expense-tracker-f5f8b.appspot.com',
   );
 }

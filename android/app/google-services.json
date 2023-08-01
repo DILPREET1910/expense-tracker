@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "514992683018",
+    "firebase_url": "https://expense-tracker-f5f8b-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "expense-tracker-f5f8b",
     "storage_bucket": "expense-tracker-f5f8b.appspot.com"
   },

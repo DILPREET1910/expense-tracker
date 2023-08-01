@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // lib imports
-import 'package:expense_tracker/pages/responsive/responsive_layout.dart';
+import 'package:expense_tracker/pages/responsive/responsiveLayout.dart';
 import 'package:expense_tracker/pages/authentication/authPage.dart';
 
 //firebase imports

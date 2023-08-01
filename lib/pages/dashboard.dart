@@ -10,6 +10,6 @@ class WidgetsDashBoard extends StatefulWidget {
 class _WidgetsDashBoardState extends State<WidgetsDashBoard> {
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.grey[400], child: Text("DashBoard"));
+    return Container(color: Colors.grey[400], child: const Text("DashBoard"));
   }
 }

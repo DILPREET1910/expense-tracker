@@ -2,6 +2,7 @@ import 'package:expense_tracker/widgets/textButton.dart';
 import 'package:expense_tracker/widgets/textFormField.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class WidgetsDataAdderCard extends StatefulWidget {
   const WidgetsDataAdderCard({super.key});
@@ -15,6 +16,30 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
   final TextEditingController _amountTextController = TextEditingController();
   final TextEditingController _descriptionTextController =
       TextEditingController();
+
+  //datePicker functions
+  void _showDatePicker() {
+    showDatePicker(
+      builder: (context, child) {
+        return Theme(
+            data: ThemeData().copyWith(
+                colorScheme: ColorScheme.light(primary: Colors.grey[900]!),
+                dialogBackgroundColor: Colors.grey),
+            child: child!);
+      },
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2900),
+    ).then((value) {
+      setState(() {
+        _dateTime = value!;
+      });
+    });
+  }
+
+  //DateTime variable
+  DateTime _dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +62,9 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
             children: [
               //START: Date Picker
               TextButton(
-                  onPressed: () {},
+                  onPressed: _showDatePicker,
                   child: Text(
-                    "date picker",
+                    DateFormat("d-MMM-yyyy").format(_dateTime),
                     style: GoogleFonts.balooBhai2(
                         fontSize: 18,
                         color: Colors.black,

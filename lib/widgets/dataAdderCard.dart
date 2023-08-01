@@ -88,6 +88,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
           //START: Amount text input
           WidgetsTextFormFields(
               label: "*amount",
+              isInteger: true,
               icon: const Icon(
                 Icons.currency_rupee,
                 color: Colors.black,

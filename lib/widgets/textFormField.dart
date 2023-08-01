@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WidgetsTextFormFields extends StatelessWidget {
@@ -6,6 +7,7 @@ class WidgetsTextFormFields extends StatelessWidget {
   final Icon icon;
   final TextEditingController controller;
   final bool? obscure;
+  final bool? isInteger;
 
   const WidgetsTextFormFields({
     super.key,
@@ -13,6 +15,7 @@ class WidgetsTextFormFields extends StatelessWidget {
     required this.icon,
     required this.controller,
     this.obscure,
+    this.isInteger,
   });
 
   @override
@@ -28,6 +31,9 @@ class WidgetsTextFormFields extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(15, 5, 15, 2),
         child: TextFormField(
+          keyboardType: (isInteger == true)
+              ? const TextInputType.numberWithOptions()
+              : null,
           obscureText: (obscure == null) ? false : obscure!,
           controller: controller,
           cursorColor: Colors.black,

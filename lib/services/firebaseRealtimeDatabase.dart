@@ -1,5 +1,7 @@
+//lib imports
+import 'package:expense_tracker/services/singleDataEntry.dart';
+
 //firebase imports
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -8,14 +10,11 @@ class RealTimeDatabase {
   final userUID = FirebaseAuth.instance.currentUser?.uid;
 
   Future<void> addDataEntry(
-      String date, String category, String amount, String description) async {
+      DateTime date, String category, double amount, String description) async {
+    SingleDataEntry singleDataEntry = SingleDataEntry();
     try {
-      await realtimeDatabase.ref("$userUID/").set({
-        "date": date,
-        "category": category,
-        "amount": amount,
-        "description": description,
-      });
+      await realtimeDatabase.ref("$userUID/").set(singleDataEntry
+          .singleJsonDataEntry(date, category, amount, description));
     } on FirebaseException catch (error) {
       print("Error while data entry : $error");
     }

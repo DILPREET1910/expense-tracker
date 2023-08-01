@@ -13,10 +13,26 @@ class RealTimeDatabase {
       DateTime date, String category, double amount, String description) async {
     SingleDataEntry singleDataEntry = SingleDataEntry();
     try {
-      await realtimeDatabase.ref("$userUID/").set(singleDataEntry
+      await realtimeDatabase.ref("$userUID/DataEntries/").set(singleDataEntry
           .singleJsonDataEntry(date, category, amount, description));
     } on FirebaseException catch (error) {
       print("Error while data entry : $error");
+    }
+  }
+
+  Future<void> addCategories(String category) async {
+    try {
+      await realtimeDatabase.ref("$userUID/Categories/").set(category);
+    } on FirebaseException catch (error) {
+      print("Error while adding new category : $error");
+    }
+  }
+
+  Future<void> getCategories() async {
+    try {
+      DataSnapshot categories = await realtimeDatabase.ref("$userUID/categories/").get();
+    } on FirebaseException catch (error) {
+      print("Error while getting Categories : $error");
     }
   }
 }

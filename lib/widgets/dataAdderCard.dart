@@ -1,3 +1,5 @@
+import 'package:expense_tracker/services/firebaseRealtimeDatabase.dart';
+import 'package:expense_tracker/services/showDialog/selectCategory.dart';
 import 'package:expense_tracker/widgets/textButton.dart';
 import 'package:expense_tracker/widgets/textFormField.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,9 @@ class WidgetsDataAdderCard extends StatefulWidget {
 }
 
 class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
+  //real time database instance
+  RealTimeDatabase realTimeDatabase = RealTimeDatabase();
+
   //TextField controllers
   final TextEditingController _amountTextController = TextEditingController();
   final TextEditingController _descriptionTextController =
@@ -73,7 +78,9 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
               //END: Date Picker
               //START: Category Picker
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    selectCategory(context, realTimeDatabase);
+                  },
                   child: Text(
                     "category picker",
                     style: GoogleFonts.ubuntu(

@@ -21,8 +21,12 @@ class RealTimeDatabase {
   }
 
   Future<void> addCategories(String category) async {
+    DatabaseReference databaseReference =
+        realtimeDatabase.ref("$userUID/Categories/");
+    DatabaseReference postReference = databaseReference.push();
+
     try {
-      await realtimeDatabase.ref("$userUID/Categories/").set(category);
+      await postReference.set(category);
     } on FirebaseException catch (error) {
       print("Error while adding new category : $error");
     }
@@ -30,7 +34,8 @@ class RealTimeDatabase {
 
   Future<void> getCategories() async {
     try {
-      DataSnapshot categories = await realtimeDatabase.ref("$userUID/categories/").get();
+      DataSnapshot categories =
+          await realtimeDatabase.ref("$userUID/categories/").get();
     } on FirebaseException catch (error) {
       print("Error while getting Categories : $error");
     }

@@ -32,12 +32,12 @@ class RealTimeDatabase {
     }
   }
 
-  Future<void> getCategories() async {
+  Future<DataSnapshot?> getCategories() async {
     try {
-      DataSnapshot categories =
-          await realtimeDatabase.ref("$userUID/categories/").get();
+      return await realtimeDatabase.ref("$userUID/Categories/").get();
     } on FirebaseException catch (error) {
       print("Error while getting Categories : $error");
     }
+    return null;
   }
 }

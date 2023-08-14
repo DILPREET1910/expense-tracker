@@ -1,8 +1,11 @@
-import 'package:expense_tracker/services/showDialog/addCategory.dart';
 import 'package:flutter/material.dart';
 
 //lib imports
 import 'package:expense_tracker/services/firebaseRealtimeDatabase.dart';
+import 'package:expense_tracker/services/showDialog/addCategory.dart';
+
+//spinkit imports
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 void selectCategory(BuildContext context, RealTimeDatabase realTimeDatabase) {
   showDialog(
@@ -13,16 +16,26 @@ void selectCategory(BuildContext context, RealTimeDatabase realTimeDatabase) {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           backgroundColor: Colors.grey[400],
           content: SizedBox(
-            //TODO: change select Category dialog ui here
-            height: 200,
-            width: 100,
-            child: ListView.builder(
-              itemCount: 7,
-              itemBuilder: (context, index) {
-                return const Text("this");
-              },
-            ),
-          ),
+              //TODO: change select Category dialog ui here
+              height: 200,
+              width: 100,
+              child: FutureBuilder(
+                future: realTimeDatabase.getCategories(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
+                    final categoryList = snapshot.data!.children.toList();
+                    return ListView.builder(
+                      itemCount: categoryList.length,
+                      itemBuilder: (context, index) {
+                        return Text(categoryList[index].value.toString());
+                      },
+                    );
+                  } else {
+                    return const SpinKitCircle(color: Colors.grey);
+                  }
+                },
+              )),
           actions: [
             TextButton(
                 onPressed: () {

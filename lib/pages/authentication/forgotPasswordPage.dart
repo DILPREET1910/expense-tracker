@@ -62,7 +62,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 //START: Forgot password title and text
                 Text(
                   'Forgot Password',
-                  style: GoogleFonts.balooBhai2(
+                  style: GoogleFonts.ubuntu(
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
                       letterSpacing: 1,
@@ -74,7 +74,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   child: Text(
                     "Enter your email and we will send you a link to reset your password",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.balooBhai2(
+                    style: GoogleFonts.ubuntu(
                       fontSize: 18,
                       color: Colors.black,
                       letterSpacing: 1,

@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                 //START: Login and welcome text
                 Text(
                   'Log In',
-                  style: GoogleFonts.balooBhai2(
+                  style: GoogleFonts.ubuntu(
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
                       letterSpacing: 3,
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text(
                     "Welcome back! Login to start tracking your expenses",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.balooBhai2(
+                    style: GoogleFonts.ubuntu(
                       fontSize: 18,
                       color: Colors.black,
                       letterSpacing: 1,
@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: Text(
                             "forgot password",
-                            style: GoogleFonts.balooBhai2(
+                            style: GoogleFonts.ubuntu(
                                 fontWeight: FontWeight.w200,
                                 color: Colors.red.shade900),
                           ),

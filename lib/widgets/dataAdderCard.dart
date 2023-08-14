@@ -65,7 +65,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                   onPressed: _showDatePicker,
                   child: Text(
                     DateFormat("d-MMM-yyyy").format(_dateTime),
-                    style: GoogleFonts.balooBhai2(
+                    style: GoogleFonts.ubuntu(
                         fontSize: 18,
                         color: Colors.black,
                         fontWeight: FontWeight.w700),
@@ -76,7 +76,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                   onPressed: () {},
                   child: Text(
                     "category picker",
-                    style: GoogleFonts.balooBhai2(
+                    style: GoogleFonts.ubuntu(
                         fontSize: 18,
                         color: Colors.black,
                         fontWeight: FontWeight.w700),

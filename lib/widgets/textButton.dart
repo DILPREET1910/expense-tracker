@@ -24,7 +24,7 @@ class WidgetsTextButton extends StatelessWidget {
         child: Center(
           child: Text(
             label,
-            style: GoogleFonts.balooBhai2(
+            style: GoogleFonts.ubuntu(
                 color: Colors.white, fontWeight: FontWeight.w400, fontSize: 20),
           ),
         ),

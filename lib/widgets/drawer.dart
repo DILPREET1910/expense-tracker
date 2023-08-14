@@ -26,21 +26,21 @@ class _WidgetsDrawerState extends State<WidgetsDrawer> {
             leading: Icon(Icons.home),
             title: Text(
               "DASHBOARD",
-              style: GoogleFonts.balooBhai2(fontSize: 20, letterSpacing: 5),
+              style: GoogleFonts.ubuntu(fontSize: 20, letterSpacing: 5),
             ),
           ),
           ListTile(
             leading: Icon(Icons.message),
             title: Text(
               "MESSAGE",
-              style: GoogleFonts.balooBhai2(fontSize: 20, letterSpacing: 5),
+              style: GoogleFonts.ubuntu(fontSize: 20, letterSpacing: 5),
             ),
           ),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text(
               "SETTINGS",
-              style: GoogleFonts.balooBhai2(fontSize: 20, letterSpacing: 5),
+              style: GoogleFonts.ubuntu(fontSize: 20, letterSpacing: 5),
             ),
           ),
           ListTile(
@@ -48,7 +48,7 @@ class _WidgetsDrawerState extends State<WidgetsDrawer> {
             leading: Icon(Icons.logout),
             title: Text(
               "LOGOUT",
-              style: GoogleFonts.balooBhai2(fontSize: 20, letterSpacing: 5),
+              style: GoogleFonts.ubuntu(fontSize: 20, letterSpacing: 5),
             ),
           ),
         ],

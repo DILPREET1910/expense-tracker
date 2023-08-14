@@ -74,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 //START: Sign Up and welcome text
                 Text(
                   'Sign Up',
-                  style: GoogleFonts.balooBhai2(
+                  style: GoogleFonts.ubuntu(
                       fontWeight: FontWeight.w700,
                       color: Colors.black,
                       letterSpacing: 3,
@@ -86,7 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Text(
                     "Create an account to start tracking your expenses",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.balooBhai2(
+                    style: GoogleFonts.ubuntu(
                       fontSize: 18,
                       color: Colors.black,
                       letterSpacing: 1,

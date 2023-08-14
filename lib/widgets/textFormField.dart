@@ -44,7 +44,7 @@ class WidgetsTextFormFields extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
               child: Text(
                 label,
-                style: GoogleFonts.balooBhai2(
+                style: GoogleFonts.ubuntu(
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                     fontSize: 20),

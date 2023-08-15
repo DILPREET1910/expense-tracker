@@ -6,6 +6,7 @@ import 'package:expense_tracker/services/showDialog/addCategory.dart';
 
 //spinkit imports
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void selectCategory(BuildContext context, RealTimeDatabase realTimeDatabase) {
   showDialog(
@@ -28,7 +29,23 @@ void selectCategory(BuildContext context, RealTimeDatabase realTimeDatabase) {
                     return ListView.builder(
                       itemCount: categoryList.length,
                       itemBuilder: (context, index) {
-                        return Text(categoryList[index].value.toString());
+                        return ListTile(
+                          title: Text(
+                            categoryList[index].value.toString(),
+                            style: GoogleFonts.ubuntu(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          trailing: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.edit),
+                              SizedBox(width: 5),
+                              Icon(Icons.delete)
+                            ],
+                          ),
+                        );
                       },
                     );
                   } else {

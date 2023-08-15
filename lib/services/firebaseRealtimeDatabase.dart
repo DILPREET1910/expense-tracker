@@ -21,7 +21,16 @@ class RealTimeDatabase {
       await postReference.set(singleDataEntry.singleJsonDataEntry(
           date, category, amount, description));
     } on FirebaseException catch (error) {
-      print("Error while data entry : $error");
+      print("Error while single data entry : $error");
+    }
+  }
+
+  //get list of data entries
+  Future<DataSnapshot?> getDataEntries() async {
+    try {
+      return await realtimeDatabase.ref("$userUID/DataEntries/").get();
+    } on FirebaseException catch (error) {
+      print("Error while getting Data Entries : $error");
     }
   }
 

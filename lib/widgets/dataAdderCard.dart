@@ -1,10 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+//lib imports
 import 'package:expense_tracker/services/firebaseRealtimeDatabase.dart';
-import 'package:expense_tracker/services/showDialog/selectCategory.dart';
+import 'package:expense_tracker/services/showDialog/addCategory.dart';
 import 'package:expense_tracker/widgets/textButton.dart';
 import 'package:expense_tracker/widgets/textFormField.dart';
-import 'package:flutter/material.dart';
+
+//google fonts imports
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
+
+//spinkit imports
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class WidgetsDataAdderCard extends StatefulWidget {
   const WidgetsDataAdderCard({super.key});
@@ -43,8 +50,83 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
     });
   }
 
+  //category picker
+  void _selectCategory() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+            backgroundColor: Colors.grey[400],
+            content: SizedBox(
+                height: 200,
+                width: 100,
+                child: FutureBuilder(
+                  future: realTimeDatabase.getCategories(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done &&
+                        snapshot.hasData) {
+                      final categoryList = snapshot.data!.children.toList();
+                      return ListView.builder(
+                        itemCount: categoryList.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                                setState(() {
+                                  category =
+                                      categoryList[index].value.toString();
+                                });
+                              },
+                              child: Text(
+                                categoryList[index].value.toString(),
+                                style: GoogleFonts.ubuntu(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            trailing: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.edit),
+                                SizedBox(width: 5),
+                                Icon(Icons.delete)
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return const SpinKitCircle(color: Colors.grey);
+                    }
+                  },
+                )),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    addCategory(context, realTimeDatabase);
+                  },
+                  child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.add),
+                        SizedBox(width: 10),
+                        Text("Add new category")
+                      ]))
+            ],
+          );
+        });
+  }
+
   //DateTime variable
   DateTime _dateTime = DateTime.now();
+
+  //Category variable
+  String category = 'select Category';
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +160,9 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
               //END: Date Picker
               //START: Category Picker
               TextButton(
-                  onPressed: () {
-                    selectCategory(context, realTimeDatabase);
-                  },
+                  onPressed: _selectCategory,
                   child: Text(
-                    "category picker",
+                    category,
                     style: GoogleFonts.ubuntu(
                         fontSize: 18,
                         color: Colors.black,

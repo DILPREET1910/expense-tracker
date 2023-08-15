@@ -126,7 +126,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
   DateTime _dateTime = DateTime.now();
 
   //Category variable
-  String category = 'select Category';
+  String? category;
 
   @override
   Widget build(BuildContext context) {
@@ -145,30 +145,39 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
         children: [
           //START: Date and Catergory picker
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               //START: Date Picker
-              TextButton(
-                  onPressed: _showDatePicker,
-                  child: Text(
-                    DateFormat("d-MMM-yyyy").format(_dateTime),
-                    style: GoogleFonts.ubuntu(
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700),
-                  )),
+              Expanded(
+                flex: 1,
+                child: TextButton(
+                    onPressed: _showDatePicker,
+                    child: Text(
+                      DateFormat("d-MMM-yyyy").format(_dateTime),
+                      style: GoogleFonts.ubuntu(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700),
+                    )),
+              ),
               //END: Date Picker
               //START: Category Picker
-              TextButton(
-                  onPressed: _selectCategory,
-                  child: Text(
-                    category,
-                    style: GoogleFonts.ubuntu(
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700),
-                  ))
+              Expanded(
+                flex: 1,
+                child: TextButton(
+                    onPressed: _selectCategory,
+                    child: Text(
+                      category ?? 'select category',
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                      maxLines: 1,
+                      style: GoogleFonts.ubuntu(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700),
+                    )),
+              ),
               //END: Category Picker
+              const SizedBox(width: 18)
             ],
           ),
           //END: Date and Category picker

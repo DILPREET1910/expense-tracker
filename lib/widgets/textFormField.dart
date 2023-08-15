@@ -29,7 +29,7 @@ class WidgetsTextFormFields extends StatelessWidget {
           border: Border.all(width: 3, color: Colors.grey[900]!),
           borderRadius: BorderRadius.circular(40)),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 5, 15, 2),
+        padding: const EdgeInsets.fromLTRB(15, 0, 15, 2),
         child: TextFormField(
           keyboardType: (isInteger == true)
               ? const TextInputType.numberWithOptions()

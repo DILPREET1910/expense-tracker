@@ -1,6 +1,6 @@
 class SingleDataEntry {
   Map<String, Object> singleJsonDataEntry(
-      DateTime date, String category, double amount, String description) {
+      String date, String category, String amount, String description) {
     return {
       "date": date,
       "category": category,

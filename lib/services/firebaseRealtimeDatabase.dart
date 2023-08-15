@@ -9,17 +9,23 @@ class RealTimeDatabase {
   final FirebaseDatabase realtimeDatabase = FirebaseDatabase.instance;
   final userUID = FirebaseAuth.instance.currentUser?.uid;
 
+  //add single data entry
   Future<void> addDataEntry(
-      DateTime date, String category, double amount, String description) async {
+      String date, String category, String amount, String description) async {
     SingleDataEntry singleDataEntry = SingleDataEntry();
+
+    DatabaseReference databaseReference =
+        realtimeDatabase.ref("$userUID/DataEntries/");
+    DatabaseReference postReference = databaseReference.push();
     try {
-      await realtimeDatabase.ref("$userUID/DataEntries/").set(singleDataEntry
-          .singleJsonDataEntry(date, category, amount, description));
+      await postReference.set(singleDataEntry.singleJsonDataEntry(
+          date, category, amount, description));
     } on FirebaseException catch (error) {
       print("Error while data entry : $error");
     }
   }
 
+  //add new category
   Future<void> addCategories(String category) async {
     DatabaseReference databaseReference =
         realtimeDatabase.ref("$userUID/Categories/");
@@ -32,6 +38,7 @@ class RealTimeDatabase {
     }
   }
 
+  //get list of categories
   Future<DataSnapshot?> getCategories() async {
     try {
       return await realtimeDatabase.ref("$userUID/Categories/").get();

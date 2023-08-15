@@ -201,7 +201,17 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
               controller: _descriptionTextController),
           //END: Description text input
           //START: Add button
-          WidgetsTextButton(onPressed: () {}, label: "add")
+          WidgetsTextButton(
+              onPressed: () {
+                realTimeDatabase.addDataEntry(
+                    _dateTime.toString(),
+                    category!,
+                    _amountTextController.text.trim(),
+                    _descriptionTextController.text.trim());
+                _amountTextController.clear();
+                _descriptionTextController.clear();
+              },
+              label: "add")
           //END: Add button
         ],
       ),

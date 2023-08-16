@@ -1,3 +1,4 @@
+import 'package:expense_tracker/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 //lib imports
@@ -16,12 +17,16 @@ class _TabletState extends State<Tablet> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        //prevents overflow error when keyboard pops up in mobile devices
-        appBar: WidgetsAppBar(height: 50),
-        backgroundColor: Colors.grey[400],
-        body: const WidgetsDataEntry(),
-      ),
+          resizeToAvoidBottomInset: false,
+          //prevents overflow error when keyboard pops up in mobile devices
+          appBar: WidgetsAppBar(height: 50),
+          backgroundColor: Colors.grey[400],
+          body: const Row(
+            children: [
+              Expanded(flex: 1, child: WidgetsDrawer()),
+              Expanded(flex: 2, child: WidgetsDataEntry()),
+            ],
+          )),
     );
   }
 }

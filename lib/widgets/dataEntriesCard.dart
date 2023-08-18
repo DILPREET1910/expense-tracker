@@ -1,9 +1,8 @@
-import 'dart:ffi';
-
 import 'package:expense_tracker/services/firebaseRealtimeDatabase.dart';
 import 'package:expense_tracker/widgets/dataColumnHeaders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:expense_tracker/widgets/dataCellHeaders.dart';
 
 class WidgetsDataEntriesCard extends StatefulWidget {
   const WidgetsDataEntriesCard({super.key});
@@ -43,12 +42,15 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
                 ],
                 rows: snapshot.data!.children
                     .map((data) => DataRow(cells: [
-                          DataCell(Text(data.child('date').value.toString())),
-                          DataCell(
-                              Text(data.child('category').value.toString())),
-                          DataCell(
-                              Text(data.child('description').value.toString())),
-                          DataCell(Text(data.child('amount').value.toString())),
+                          DataCell(WidgetsDataCellHeader(
+                              label: data.child('date').value.toString())),
+                          DataCell(WidgetsDataCellHeader(
+                              label: data.child('category').value.toString())),
+                          DataCell(WidgetsDataCellHeader(
+                              label:
+                                  data.child('description').value.toString())),
+                          DataCell(WidgetsDataCellHeader(
+                              label: data.child('amount').value.toString())),
                         ]))
                     .toList(),
               ),

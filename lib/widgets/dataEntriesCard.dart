@@ -3,6 +3,7 @@ import 'package:expense_tracker/widgets/dataColumnHeaders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:expense_tracker/widgets/dataCellHeaders.dart';
+import 'package:intl/intl.dart';
 
 class WidgetsDataEntriesCard extends StatefulWidget {
   const WidgetsDataEntriesCard({super.key});
@@ -42,8 +43,11 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
                 ],
                 rows: snapshot.data!.children
                     .map((data) => DataRow(cells: [
+                          // DateFormat("d-MMM-yyyy").format(_dateTime),
                           DataCell(WidgetsDataCellHeader(
-                              label: data.child('date').value.toString())),
+                              label: DateFormat("d-MMM-yyyy").format(
+                                  DateTime.parse(
+                                      data.child('date').value.toString())))),
                           DataCell(WidgetsDataCellHeader(
                               label: data.child('category').value.toString())),
                           DataCell(WidgetsDataCellHeader(

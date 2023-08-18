@@ -11,7 +11,7 @@ class RealTimeDatabase {
 
   //add single data entry
   Future<void> addDataEntry(
-      String date, String category, String amount, String description) async {
+      String date, String category, double amount, String description) async {
     SingleDataEntry singleDataEntry = SingleDataEntry();
 
     DatabaseReference databaseReference =

@@ -206,7 +206,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                 realTimeDatabase.addDataEntry(
                     _dateTime.toString(),
                     category!,
-                    _amountTextController.text.trim(),
+                    double.parse(_amountTextController.text.trim()),
                     _descriptionTextController.text.trim());
                 _amountTextController.clear();
                 _descriptionTextController.clear();

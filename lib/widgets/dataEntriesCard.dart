@@ -32,31 +32,34 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: DataTable(
-                columns: const [
-                  DataColumn(label: WidgetsDataColumnHeader(label: 'date')),
-                  DataColumn(label: WidgetsDataColumnHeader(label: 'category')),
-                  DataColumn(
-                      label: WidgetsDataColumnHeader(label: 'description')),
-                  DataColumn(label: WidgetsDataColumnHeader(label: 'amount')),
-                ],
-                rows: snapshot.data!.children
-                    .map((data) => DataRow(cells: [
-                          // DateFormat("d-MMM-yyyy").format(_dateTime),
-                          DataCell(WidgetsDataCellHeader(
-                              label: DateFormat("d-MMM-yyyy").format(
-                                  DateTime.parse(
-                                      data.child('date').value.toString())))),
-                          DataCell(WidgetsDataCellHeader(
-                              label: data.child('category').value.toString())),
-                          DataCell(WidgetsDataCellHeader(
-                              label:
-                                  data.child('description').value.toString())),
-                          DataCell(WidgetsDataCellHeader(
-                              label: data.child('amount').value.toString())),
-                        ]))
-                    .toList(),
+              scrollDirection: Axis.vertical,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
+                  columns: const [
+                    DataColumn(label: WidgetsDataColumnHeader(label: 'date')),
+                    DataColumn(label: WidgetsDataColumnHeader(label: 'category')),
+                    DataColumn(
+                        label: WidgetsDataColumnHeader(label: 'description')),
+                    DataColumn(label: WidgetsDataColumnHeader(label: 'amount')),
+                  ],
+                  rows: snapshot.data!.children
+                      .map((data) => DataRow(cells: [
+                            // DateFormat("d-MMM-yyyy").format(_dateTime),
+                            DataCell(WidgetsDataCellHeader(
+                                label: DateFormat("d-MMM-yyyy").format(
+                                    DateTime.parse(
+                                        data.child('date').value.toString())))),
+                            DataCell(WidgetsDataCellHeader(
+                                label: data.child('category').value.toString())),
+                            DataCell(WidgetsDataCellHeader(
+                                label:
+                                    data.child('description').value.toString())),
+                            DataCell(WidgetsDataCellHeader(
+                                label: data.child('amount').value.toString())),
+                          ]))
+                      .toList(),
+                ),
               ),
             );
           } else {

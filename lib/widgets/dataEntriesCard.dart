@@ -1,4 +1,9 @@
+import 'dart:ffi';
+
+import 'package:expense_tracker/services/firebaseRealtimeDatabase.dart';
+import 'package:expense_tracker/widgets/dataColumnHeaders.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class WidgetsDataEntriesCard extends StatefulWidget {
   const WidgetsDataEntriesCard({super.key});
@@ -8,6 +13,8 @@ class WidgetsDataEntriesCard extends StatefulWidget {
 }
 
 class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
+  RealTimeDatabase realTimeDatabase = RealTimeDatabase();
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -20,10 +27,36 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
       elevation: 0,
       shadowColor: Colors.black,
       color: Colors.grey,
-      child: Column(
-        children: [
-          Text("this is the data entires card"),
-        ],
+      child: FutureBuilder(
+        future: realTimeDatabase.getDataEntries(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                columns: const [
+                  DataColumn(label: WidgetsDataColumnHeader(label: 'date')),
+                  DataColumn(label: WidgetsDataColumnHeader(label: 'category')),
+                  DataColumn(
+                      label: WidgetsDataColumnHeader(label: 'description')),
+                  DataColumn(label: WidgetsDataColumnHeader(label: 'amount')),
+                ],
+                rows: snapshot.data!.children
+                    .map((data) => DataRow(cells: [
+                          DataCell(Text(data.child('date').value.toString())),
+                          DataCell(
+                              Text(data.child('category').value.toString())),
+                          DataCell(
+                              Text(data.child('description').value.toString())),
+                          DataCell(Text(data.child('amount').value.toString())),
+                        ]))
+                    .toList(),
+              ),
+            );
+          } else {
+            return const SpinKitCircle(color: Colors.grey);
+          }
+        },
       ),
     );
   }

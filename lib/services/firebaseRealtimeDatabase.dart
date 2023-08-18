@@ -32,6 +32,7 @@ class RealTimeDatabase {
     } on FirebaseException catch (error) {
       print("Error while getting Data Entries : $error");
     }
+    return null;
   }
 
   //add new category

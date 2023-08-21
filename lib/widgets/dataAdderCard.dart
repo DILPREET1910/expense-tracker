@@ -14,7 +14,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class WidgetsDataAdderCard extends StatefulWidget {
-  const WidgetsDataAdderCard({super.key});
+  Function(bool value) setParentState;
+
+  WidgetsDataAdderCard({super.key, required this.setParentState});
 
   @override
   State<WidgetsDataAdderCard> createState() => _WidgetsDataAdderCardState();
@@ -203,11 +205,13 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
           //START: Add button
           WidgetsTextButton(
               onPressed: () {
-                realTimeDatabase.addDataEntry(
-                    _dateTime.toString(),
-                    category!,
-                    double.parse(_amountTextController.text.trim()),
-                    _descriptionTextController.text.trim());
+                realTimeDatabase
+                    .addDataEntry(
+                        _dateTime.toString(),
+                        category!,
+                        double.parse(_amountTextController.text.trim()),
+                        _descriptionTextController.text.trim())
+                    .then((value) => widget.setParentState(true));
                 _amountTextController.clear();
                 _descriptionTextController.clear();
               },

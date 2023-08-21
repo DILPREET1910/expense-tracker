@@ -12,17 +12,23 @@ class WidgetsDataEntry extends StatefulWidget {
 class _WidgetsDataEntryState extends State<WidgetsDataEntry> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(child: Padding(
-          padding: EdgeInsets.fromLTRB(15, 15, 15, 7.5),
-          child: WidgetsDataAdderCard(),
-        )),
-        Expanded(child: Padding(
-          padding: EdgeInsets.fromLTRB(15, 15, 15, 7.5),
-          child: WidgetsDataEntriesCard(),
-        ))
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(15, 15, 15, 7.5),
+            child: WidgetsDataAdderCard(setParentState: (value) {
+              setState(() {});
+            }),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(15, 15, 15, 7.5),
+            child: WidgetsDataEntriesCard(),
+          ),
+        )
       ],
     );
   }

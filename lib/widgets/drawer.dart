@@ -1,3 +1,5 @@
+import 'package:expense_tracker/pages/dashboard.dart';
+import 'package:expense_tracker/services/graph/pieChart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +25,10 @@ class _WidgetsDrawerState extends State<WidgetsDrawer> {
         children: [
           DrawerHeader(child: Icon(Icons.settings)),
           ListTile(
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => WidgetsDashBoard(appBar: true,)));
+            },
             leading: Icon(Icons.home),
             title: Text(
               "DASHBOARD",

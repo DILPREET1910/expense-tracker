@@ -27,7 +27,11 @@ class _DesktopState extends State<Desktop> {
               children: [
                 Expanded(flex: 1, child: WidgetsDrawer()),
                 Expanded(flex: 2, child: WidgetsDataEntry()),
-                Expanded(flex: 1, child: WidgetsDashBoard())
+                Expanded(
+                    flex: 1,
+                    child: WidgetsDashBoard(
+                      appBar: false,
+                    ))
               ],
             )));
   }

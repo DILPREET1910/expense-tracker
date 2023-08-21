@@ -26,10 +26,12 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return MaterialApp(
+              debugShowCheckedModeBanner: false,
               home: ResponsiveLayout(),
             );
           } else {
             return const MaterialApp(
+              debugShowCheckedModeBanner: false,
               home: AuthPage(),
             );
           }

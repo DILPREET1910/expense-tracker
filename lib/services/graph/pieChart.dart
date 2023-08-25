@@ -81,6 +81,20 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                           letterSpacing: 1,
                           color: Colors.black54),
                 ),
+                trailing: Text(
+                  data[index][0].toString(),
+                  style: touchIndex == index
+                      ? GoogleFonts.ubuntu(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 2,
+                          color: Colors.black)
+                      : GoogleFonts.ubuntu(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 1,
+                          color: Colors.black54),
+                ),
               ),
             );
           },

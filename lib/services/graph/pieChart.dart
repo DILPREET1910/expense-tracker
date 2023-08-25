@@ -1,3 +1,4 @@
+import 'package:expense_tracker/services/graph/colors.dart';
 import 'package:expense_tracker/services/graph/pieChartSectionData.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,16 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
     [20.toDouble(), 'is'],
     [30.toDouble(), 'a'],
     [40.toDouble(), 'dummy'],
-    [50.toDouble(), 'data']
+    [20.toDouble(), 'data'],
+    [50.toDouble(), 'this'],
+    [10.toDouble(), 'is'],
+    [10.toDouble(), 'more'],
+    [50.toDouble(), 'dummy'],
+    [50.toDouble(), 'data'],
+    [50.toDouble(), 'to'],
+    [50.toDouble(), 'check'],
+    [50.toDouble(), 'color'],
+    [50.toDouble(), 'scheme'],
   ];
 
   @override
@@ -65,8 +75,8 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
               },
               child: ListTile(
                 leading: touchIndex == index
-                    ? const Icon(Icons.square_rounded)
-                    : const Icon(Icons.circle),
+                    ? Icon(Icons.square_rounded, color: pieColorsFocus[index])
+                    : Icon(Icons.circle, color: pieColors[index]),
                 title: Text(
                   data[index][1],
                   style: touchIndex == index

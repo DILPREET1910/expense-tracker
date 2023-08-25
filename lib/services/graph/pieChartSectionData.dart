@@ -1,3 +1,4 @@
+import 'package:expense_tracker/services/graph/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +8,7 @@ List<PieChartSectionData> widgetsPieChartSelectionData(
   return List.generate(
       data.length,
       (index) => PieChartSectionData(
-          color: colors[index],
+          color: touchIndex == index ? pieColorsFocus[index] : pieColors[index],
           value: data[index][0],
           title: data[index][1],
           titleStyle: touchIndex == index
@@ -23,11 +24,3 @@ List<PieChartSectionData> widgetsPieChartSelectionData(
                   color: Colors.black54),
           radius: touchIndex == index ? 180 : 150));
 }
-
-List<Color> colors = [
-  Colors.blue.shade300,
-  Colors.purple.shade300,
-  Colors.indigo.shade300,
-  Colors.grey.shade300,
-  Colors.green.shade300
-];

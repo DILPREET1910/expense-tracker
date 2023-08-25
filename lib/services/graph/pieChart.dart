@@ -77,9 +77,9 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                           color: Colors.black)
                       : GoogleFonts.ubuntu(
                           fontSize: 20,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           letterSpacing: 1,
-                          color: Colors.black87),
+                          color: Colors.black54),
                 ),
               ),
             );

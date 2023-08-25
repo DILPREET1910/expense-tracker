@@ -18,9 +18,9 @@ List<PieChartSectionData> widgetsPieChartSelectionData(
                   color: Colors.black)
               : GoogleFonts.ubuntu(
                   fontSize: 20,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w500,
                   letterSpacing: 1,
-                  color: Colors.black87),
+                  color: Colors.black54),
           radius: touchIndex == index ? 180 : 150));
 }
 

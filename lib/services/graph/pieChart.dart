@@ -23,26 +23,69 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
 
   @override
   Widget build(BuildContext context) {
-    return PieChart(
-      PieChartData(
-        sections: widgetsPieChartSelectionData(data, touchIndex),
-        pieTouchData:
-            PieTouchData(touchCallback: (FlTouchEvent event, pieTouchResponse) {
-          setState(() {
-            if (!event.isInterestedForInteractions ||
-                pieTouchResponse == null ||
-                pieTouchResponse.touchedSection == null) {
-              touchIndex = -1;
-            } else {
-              touchIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
-            }
-          });
-        }),
-        centerSpaceRadius: 3,
-        sectionsSpace: 3,
+    return Column(children: [
+      Expanded(
+        child: PieChart(
+          PieChartData(
+            sections: widgetsPieChartSelectionData(data, touchIndex),
+            pieTouchData: PieTouchData(
+                touchCallback: (FlTouchEvent event, pieTouchResponse) {
+              setState(() {
+                if (!event.isInterestedForInteractions ||
+                    pieTouchResponse == null ||
+                    pieTouchResponse.touchedSection == null) {
+                  touchIndex = -1;
+                } else {
+                  touchIndex =
+                      pieTouchResponse.touchedSection!.touchedSectionIndex;
+                }
+              });
+            }),
+            centerSpaceRadius: 3,
+            sectionsSpace: 3,
+          ),
+          swapAnimationCurve: Curves.linear,
+          swapAnimationDuration: const Duration(milliseconds: 150),
+        ),
       ),
-      swapAnimationCurve: Curves.linear,
-      swapAnimationDuration: const Duration(milliseconds: 150),
-    );
+      Expanded(
+        child: ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            return Listener(
+              onPointerDown: (value) {
+                setState(() {
+                  touchIndex = index;
+                });
+              },
+              onPointerUp: (value) {
+                setState(() {
+                  touchIndex = -1;
+                });
+              },
+              child: ListTile(
+                leading: touchIndex == index
+                    ? const Icon(Icons.square_rounded)
+                    : const Icon(Icons.circle),
+                title: Text(
+                  data[index][1],
+                  style: touchIndex == index
+                      ? GoogleFonts.ubuntu(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 2,
+                          color: Colors.black)
+                      : GoogleFonts.ubuntu(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 1,
+                          color: Colors.black87),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    ]);
   }
 }

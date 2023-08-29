@@ -36,25 +36,26 @@ class RealTimeDatabase {
   }
 
   //add new category
-  Future<void> addCategories(String category) async {
+  Future<void> addCategories(String category, secondSetState) async {
     DatabaseReference databaseReference =
         realtimeDatabase.ref("$userUID/Categories/");
     DatabaseReference postReference = databaseReference.push();
 
     try {
       await postReference.set(category);
+      secondSetState(() {});
     } on FirebaseException catch (error) {
       print("Error while adding new category : $error");
     }
   }
 
   //delete category
-  Future<void> removeCategory(String category, setState) async {
+  Future<void> removeCategory(String category, secondSetState) async {
     DatabaseReference databaseReference =
         realtimeDatabase.ref("$userUID/Categories/");
     try {
       await databaseReference.child(category).remove();
-      setState(() {});
+      secondSetState(() {});
       print("delete kiya");
     } on FirebaseException catch (error) {
       print("Error while remove the category : $error");

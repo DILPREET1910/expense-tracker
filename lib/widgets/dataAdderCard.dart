@@ -58,7 +58,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
         context: context,
         builder: (context) {
           return StatefulBuilder(
-            builder: (context, StateSetter setState) {
+            builder: (context, StateSetter secondSetState) {
               return AlertDialog(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15)),
@@ -103,7 +103,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                                               categoryList[index]
                                                   .key
                                                   .toString(),
-                                              setState);
+                                              secondSetState);
                                         },
                                         child: const Icon(Icons.delete))
                                   ],
@@ -119,7 +119,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                 actions: [
                   TextButton(
                       onPressed: () {
-                        addCategory(context, realTimeDatabase, setState);
+                        addCategory(context, realTimeDatabase, secondSetState);
                       },
                       child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

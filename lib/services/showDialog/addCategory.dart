@@ -10,7 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 TextEditingController newCategory = TextEditingController();
 
 void addCategory(
-    BuildContext context, RealTimeDatabase realTimeDatabase, setState) {
+    BuildContext context, RealTimeDatabase realTimeDatabase,secondSetState) {
   showDialog(
       context: context,
       builder: (context) {
@@ -65,9 +65,8 @@ void addCategory(
                     WidgetsTextButton1(
                       onPressed: () {
                         Navigator.pop(context);
-                        realTimeDatabase.addCategories(newCategory.text.trim());
+                        realTimeDatabase.addCategories(newCategory.text.trim(),secondSetState);
                         newCategory.clear();
-                        setState(() {});
                       },
                       label: "save",
                     ),

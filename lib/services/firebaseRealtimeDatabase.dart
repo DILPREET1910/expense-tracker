@@ -48,6 +48,19 @@ class RealTimeDatabase {
     }
   }
 
+  //delete category
+  Future<void> removeCategory(
+      String category) async {
+    DatabaseReference databaseReference =
+        realtimeDatabase.ref("$userUID/Categories/");
+    try {
+      await databaseReference.child(category).remove();
+      print("delete kiya");
+    } on FirebaseException catch (error) {
+      print("Error while remove the category : $error");
+    }
+  }
+
   //get list of categories
   Future<DataSnapshot?> getCategories() async {
     try {

@@ -90,12 +90,17 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                                 ),
                               ),
                             ),
-                            trailing: const Row(
+                            trailing: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.edit),
-                                SizedBox(width: 5),
-                                Icon(Icons.delete)
+                                const Icon(Icons.edit),
+                                const SizedBox(width: 5),
+                                GestureDetector(
+                                    onTap: () async {
+                                      await realTimeDatabase.removeCategory(
+                                          categoryList[index].key.toString());
+                                    },
+                                    child: const Icon(Icons.delete))
                               ],
                             ),
                           );

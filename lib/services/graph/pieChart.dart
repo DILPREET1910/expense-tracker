@@ -51,8 +51,8 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                 }
               });
             }),
-            centerSpaceRadius: 3,
-            sectionsSpace: 3,
+            centerSpaceRadius: 0,
+            sectionsSpace: 0,
           ),
           swapAnimationCurve: Curves.linear,
           swapAnimationDuration: const Duration(milliseconds: 150),

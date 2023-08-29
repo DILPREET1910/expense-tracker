@@ -102,7 +102,8 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                                           await realTimeDatabase.removeCategory(
                                               categoryList[index]
                                                   .key
-                                                  .toString());
+                                                  .toString(),
+                                              setState);
                                         },
                                         child: const Icon(Icons.delete))
                                   ],
@@ -118,7 +119,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                 actions: [
                   TextButton(
                       onPressed: () {
-                        addCategory(context, realTimeDatabase,setState);
+                        addCategory(context, realTimeDatabase, setState);
                       },
                       child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -121,12 +121,20 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                       onPressed: () {
                         addCategory(context, realTimeDatabase, secondSetState);
                       },
-                      child: const Row(
+                      child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.add),
-                            SizedBox(width: 10),
-                            Text("Add new category")
+                            Icon(Icons.add, size: 25, color: Colors.grey[900]),
+                            const SizedBox(width: 10),
+                            Text(
+                              "Add new category",
+                              style: GoogleFonts.ubuntu(
+                                color: Colors.grey[900],
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18,
+                                letterSpacing: 0.5,
+                              ),
+                            )
                           ]))
                 ],
               );

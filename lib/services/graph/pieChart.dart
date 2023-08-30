@@ -1,11 +1,19 @@
+import 'package:flutter/material.dart';
+
+//lib imports
 import 'package:expense_tracker/services/graph/colors.dart';
 import 'package:expense_tracker/services/graph/pieChartSectionData.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/material.dart';
+
+//google fonts imports
 import 'package:google_fonts/google_fonts.dart';
 
+//fl charts imports
+import 'package:fl_chart/fl_chart.dart';
+
 class WidgetsPieChart extends StatefulWidget {
-  const WidgetsPieChart({super.key});
+  final List<String> data;
+
+  const WidgetsPieChart({super.key, required this.data});
 
   @override
   State<WidgetsPieChart> createState() => _WidgetsPieChartState();
@@ -14,30 +22,13 @@ class WidgetsPieChart extends StatefulWidget {
 class _WidgetsPieChartState extends State<WidgetsPieChart> {
   int touchIndex = -1;
 
-  List<List<dynamic>> data = [
-    [10.toDouble(), 'this'],
-    [20.toDouble(), 'is'],
-    [30.toDouble(), 'a'],
-    [40.toDouble(), 'dummy'],
-    [20.toDouble(), 'data'],
-    [50.toDouble(), 'this'],
-    [10.toDouble(), 'is'],
-    [10.toDouble(), 'more'],
-    [50.toDouble(), 'dummy'],
-    [50.toDouble(), 'data'],
-    [50.toDouble(), 'to'],
-    [50.toDouble(), 'check'],
-    [50.toDouble(), 'color'],
-    [50.toDouble(), 'scheme'],
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Column(children: [
       Expanded(
         child: PieChart(
           PieChartData(
-            sections: widgetsPieChartSelectionData(data, touchIndex),
+            sections: widgetsPieChartSelectionData(widget.data, touchIndex),
             pieTouchData: PieTouchData(
                 touchCallback: (FlTouchEvent event, pieTouchResponse) {
               setState(() {
@@ -60,7 +51,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
       ),
       Expanded(
         child: ListView.builder(
-          itemCount: data.length,
+          itemCount: widget.data.length,
           itemBuilder: (context, index) {
             return Listener(
               onPointerDown: (value) {
@@ -78,7 +69,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                     ? Icon(Icons.square_rounded, color: pieColorsFocus[index])
                     : Icon(Icons.circle, color: pieColors[index]),
                 title: Text(
-                  data[index][1],
+                  widget.data[index],
                   style: touchIndex == index
                       ? GoogleFonts.ubuntu(
                           fontSize: 25,
@@ -92,7 +83,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                           color: Colors.black54),
                 ),
                 trailing: Text(
-                  data[index][0].toString(),
+                  widget.data[index].toString(),
                   style: touchIndex == index
                       ? GoogleFonts.ubuntu(
                           fontSize: 25,

@@ -1,16 +1,22 @@
-import 'package:expense_tracker/services/graph/colors.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+
+//lib imports
+import 'package:expense_tracker/services/graph/colors.dart';
+
+//google fonts imports
 import 'package:google_fonts/google_fonts.dart';
 
+//fl charts imports
+import 'package:fl_chart/fl_chart.dart';
+
 List<PieChartSectionData> widgetsPieChartSelectionData(
-    List<List<dynamic>> data, int touchIndex) {
+    List<String> data, int touchIndex) {
   return List.generate(
       data.length,
       (index) => PieChartSectionData(
           color: touchIndex == index ? pieColorsFocus[index] : pieColors[index],
-          value: data[index][0],
-          title: data[index][1],
+          value: 100,
+          title: data[index],
           titleStyle: touchIndex == index
               ? GoogleFonts.ubuntu(
                   fontSize: 30,

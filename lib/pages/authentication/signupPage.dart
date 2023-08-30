@@ -50,10 +50,10 @@ class _SignUpPageState extends State<SignUpPage> {
           .then((value) {
         //create pre built categories
         RealTimeDatabase realTimeDatabase = RealTimeDatabase();
-        realTimeDatabase.addCategories1('food');
-        realTimeDatabase.addCategories1('travelling');
-        realTimeDatabase.addCategories1('rent');
-        realTimeDatabase.addCategories1('bills');
+        realTimeDatabase.addCategories('food', setState);
+        realTimeDatabase.addCategories('travelling', setState);
+        realTimeDatabase.addCategories('rent', setState);
+        realTimeDatabase.addCategories('bills', setState);
       });
 
       //pop spinkit

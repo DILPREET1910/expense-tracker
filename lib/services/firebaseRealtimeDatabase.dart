@@ -37,26 +37,21 @@ class RealTimeDatabase {
 
   //add new category
   Future<void> addCategories(String category, secondSetState) async {
+    //categories database reference
     DatabaseReference databaseReference =
         realtimeDatabase.ref("$userUID/Categories/");
     DatabaseReference postReference = databaseReference.push();
 
+    //sorted data map database reference
+    DatabaseReference sortedDataMapDatabaseReference =
+        realtimeDatabase.ref("$userUID/sortedDataMap/");
+    DatabaseReference sortedDataMapPostReference =
+        sortedDataMapDatabaseReference.push();
+
     try {
       await postReference.set(category);
+      sortedDataMapPostReference.set({category: 0});
       secondSetState(() {});
-    } on FirebaseException catch (error) {
-      print("Error while adding new category : $error");
-    }
-  }
-
-  //add new category without setState
-  Future<void> addCategories1(String category) async {
-    DatabaseReference databaseReference =
-        realtimeDatabase.ref("$userUID/Categories/");
-    DatabaseReference postReference = databaseReference.push();
-
-    try {
-      await postReference.set(category);
     } on FirebaseException catch (error) {
       print("Error while adding new category : $error");
     }

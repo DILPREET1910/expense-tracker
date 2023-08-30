@@ -42,15 +42,8 @@ class RealTimeDatabase {
         realtimeDatabase.ref("$userUID/Categories/");
     DatabaseReference postReference = databaseReference.push();
 
-    //sorted data map database reference
-    DatabaseReference sortedDataMapDatabaseReference =
-        realtimeDatabase.ref("$userUID/sortedDataMap/");
-    DatabaseReference sortedDataMapPostReference =
-        sortedDataMapDatabaseReference.push();
-
     try {
       await postReference.set(category);
-      sortedDataMapPostReference.set({category: 0});
       secondSetState(() {});
     } on FirebaseException catch (error) {
       print("Error while adding new category : $error");

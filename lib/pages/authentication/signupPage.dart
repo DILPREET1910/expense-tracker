@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //lib imports
 import 'package:expense_tracker/widgets/textButton.dart';
 import 'package:expense_tracker/widgets/textFormField.dart';
+import 'package:expense_tracker/services/firebaseRealtimeDatabase.dart';
 
 //firebase imports
 import 'package:firebase_auth/firebase_auth.dart';
@@ -41,9 +42,19 @@ class _SignUpPageState extends State<SignUpPage> {
             );
           });
 
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailTextController.text.trim(),
-          password: _passwordTextController.text.trim());
+      //create user with email and password
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: _emailTextController.text.trim(),
+              password: _passwordTextController.text.trim())
+          .then((value) {
+        //create pre built categories
+        RealTimeDatabase realTimeDatabase = RealTimeDatabase();
+        realTimeDatabase.addCategories1('food');
+        realTimeDatabase.addCategories1('travelling');
+        realTimeDatabase.addCategories1('rent');
+        realTimeDatabase.addCategories1('bills');
+      });
 
       //pop spinkit
       Navigator.of(context).pop();

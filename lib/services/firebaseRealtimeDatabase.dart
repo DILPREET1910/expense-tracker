@@ -69,7 +69,6 @@ class RealTimeDatabase {
     try {
       await databaseReference.child(category).remove();
       secondSetState(() {});
-      print("delete kiya");
     } on FirebaseException catch (error) {
       print("Error while remove the category : $error");
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 //lib imports
 import 'package:expense_tracker/services/graph/colors.dart';
@@ -22,9 +23,45 @@ class WidgetsPieChart extends StatefulWidget {
 class _WidgetsPieChartState extends State<WidgetsPieChart> {
   int touchIndex = -1;
 
+  //date time functions
+  DateTime startDate = DateTime(DateTime.now().year, DateTime.now().month, 1);
+  DateTime endDate = DateTime(DateTime.now().year, DateTime.now().month + 1, 0);
+
   @override
   Widget build(BuildContext context) {
     return Column(children: [
+      Row(
+        children: [
+          Expanded(
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'from : ${DateFormat("d-MMM-yyyy").format(startDate)}',
+                style: GoogleFonts.ubuntu(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 1,
+                  color: Colors.grey[900],
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: TextButton(
+              onPressed: () {},
+              child: Text(
+                'to : ${DateFormat("d-MMM-yyyy").format(endDate)}',
+                style: GoogleFonts.ubuntu(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 1,
+                  color: Colors.grey[900],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       Expanded(
         child: PieChart(
           PieChartData(

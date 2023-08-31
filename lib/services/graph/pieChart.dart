@@ -39,8 +39,8 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
       },
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime(2900),
+      firstDate: DateTime(DateTime.now().year - 100),
+      lastDate: DateTime(DateTime.now().year + 100),
     ).then((value) {
       setState(() {
         startDate = value!;
@@ -59,8 +59,8 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
       },
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(1900),
-      lastDate: DateTime(2900),
+      firstDate: startDate,
+      lastDate: DateTime(DateTime.now().year + 100),
     ).then((value) {
       setState(() {
         endDate = value!;

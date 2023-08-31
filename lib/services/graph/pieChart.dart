@@ -23,9 +23,50 @@ class WidgetsPieChart extends StatefulWidget {
 class _WidgetsPieChartState extends State<WidgetsPieChart> {
   int touchIndex = -1;
 
-  //date time functions
+  //date time variables
   DateTime startDate = DateTime(DateTime.now().year, DateTime.now().month, 1);
   DateTime endDate = DateTime(DateTime.now().year, DateTime.now().month + 1, 0);
+
+  //datePicker functions
+  void startDatePicker() {
+    showDatePicker(
+      builder: (context, child) {
+        return Theme(
+            data: ThemeData().copyWith(
+                colorScheme: ColorScheme.light(primary: Colors.grey[900]!),
+                dialogBackgroundColor: Colors.grey),
+            child: child!);
+      },
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2900),
+    ).then((value) {
+      setState(() {
+        startDate = value!;
+      });
+    });
+  }
+
+  void endDatePicker() {
+    showDatePicker(
+      builder: (context, child) {
+        return Theme(
+            data: ThemeData().copyWith(
+                colorScheme: ColorScheme.light(primary: Colors.grey[900]!),
+                dialogBackgroundColor: Colors.grey),
+            child: child!);
+      },
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2900),
+    ).then((value) {
+      setState(() {
+        endDate = value!;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +75,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
         children: [
           Expanded(
             child: TextButton(
-              onPressed: () {},
+              onPressed: startDatePicker,
               child: Text(
                 'from : ${DateFormat("d-MMM-yyyy").format(startDate)}',
                 style: GoogleFonts.ubuntu(
@@ -48,7 +89,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
           ),
           Expanded(
             child: TextButton(
-              onPressed: () {},
+              onPressed: endDatePicker,
               child: Text(
                 'to : ${DateFormat("d-MMM-yyyy").format(endDate)}',
                 style: GoogleFonts.ubuntu(

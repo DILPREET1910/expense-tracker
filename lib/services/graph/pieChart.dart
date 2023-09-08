@@ -1,5 +1,4 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -135,7 +134,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
         child: PieChart(
           PieChartData(
             sections:
-                widgetsPieChartSelectionData(sortedData, touchIndex),
+                widgetsPieChartSelectionData(widget.categoriesList,sortedData, touchIndex),
             pieTouchData: PieTouchData(
                 touchCallback: (FlTouchEvent event, pieTouchResponse) {
               setState(() {

@@ -193,7 +193,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                           color: Colors.black54),
                 ),
                 trailing: Text(
-                  nonZeroData[index][0],
+                  nonZeroData[index][1].toString(),
                   style: touchIndex == index
                       ? GoogleFonts.ubuntu(
                           fontSize: 25,

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -72,6 +74,30 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
 
   @override
   Widget build(BuildContext context) {
+    // sorted data hash map
+    Map<String, double> sortedData = HashMap();
+
+    widget.categoriesList.forEach((category) {
+      sortedData.putIfAbsent(category, () => 0.0);
+    });
+
+    widget.dataEntriesList.forEach((element) {
+      /*
+      0 index - Date Time in string
+      1 index - amount
+      2 index - description
+      3 index - category
+      */
+      DateTime currentDate = DateTime.parse(element[0]);
+      if ((currentDate.isAfter(startDate) ||
+              currentDate.isAtSameMomentAs(startDate)) &&
+          (currentDate.isBefore(endDate) ||
+              currentDate.isAtSameMomentAs(endDate))) {
+        int integer = int.parse(element[1]);
+        sortedData.update(element[3], (value) => value + integer);
+      }
+    });
+
     return Column(children: [
       Row(
         children: [
@@ -164,7 +190,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                           color: Colors.black54),
                 ),
                 trailing: Text(
-                  widget.categoriesList[index].toString(),
+                  sortedData[widget.categoriesList[index]].toString(),
                   style: touchIndex == index
                       ? GoogleFonts.ubuntu(
                           fontSize: 25,

@@ -97,6 +97,11 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
       }
     });
 
+    List<List<dynamic>> nonZeroData = [];
+    sortedData.forEach((key, value) {
+      if (value != 0.0) nonZeroData.add([key, value]);
+    });
+
     return Column(children: [
       Row(
         children: [
@@ -133,8 +138,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
       Expanded(
         child: PieChart(
           PieChartData(
-            sections:
-                widgetsPieChartSelectionData(widget.categoriesList,sortedData, touchIndex),
+            sections: widgetsPieChartSelectionData(nonZeroData, touchIndex),
             pieTouchData: PieTouchData(
                 touchCallback: (FlTouchEvent event, pieTouchResponse) {
               setState(() {
@@ -157,7 +161,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
       ),
       Expanded(
         child: ListView.builder(
-          itemCount: widget.categoriesList.length,
+          itemCount: nonZeroData.length,
           itemBuilder: (context, index) {
             return Listener(
               onPointerDown: (value) {
@@ -175,7 +179,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                     ? Icon(Icons.square_rounded, color: pieColorsFocus[index])
                     : Icon(Icons.circle, color: pieColors[index]),
                 title: Text(
-                  widget.categoriesList[index],
+                  nonZeroData[index][0],
                   style: touchIndex == index
                       ? GoogleFonts.ubuntu(
                           fontSize: 25,
@@ -189,7 +193,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                           color: Colors.black54),
                 ),
                 trailing: Text(
-                  sortedData[widget.categoriesList[index]].toString(),
+                  nonZeroData[index][0],
                   style: touchIndex == index
                       ? GoogleFonts.ubuntu(
                           fontSize: 25,

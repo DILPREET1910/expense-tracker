@@ -10,15 +10,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 List<PieChartSectionData> widgetsPieChartSelectionData(
-    List<String> categoriesList,
-    Map<String, double> sortedData,
-    int touchIndex) {
+    List<List<dynamic>> nonZeroData, int touchIndex) {
   return List.generate(
-      categoriesList.length,
+      nonZeroData.length,
       (index) => PieChartSectionData(
           color: touchIndex == index ? pieColorsFocus[index] : pieColors[index],
-          value: sortedData[categoriesList[index]],
-          title: categoriesList[index],
+          value: nonZeroData[index][1],
+          title: nonZeroData[index][0],
           titleStyle: touchIndex == index
               ? GoogleFonts.ubuntu(
                   fontSize: 30,

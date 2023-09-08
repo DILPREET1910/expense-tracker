@@ -28,16 +28,27 @@ class _WidgetsDashBoardState extends State<WidgetsDashBoard> {
             ? WidgetsAppBar(height: 50)
             : WidgetsAppBar(height: 0),
         backgroundColor: Colors.grey[400],
+        //future builder for list of categories
         body: FutureBuilder(
             future: realTimeDatabase.getCategories(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const SpinKitCircle(color: Colors.grey);
               } else {
-                return WidgetsPieChart(
-                    data: snapshot.data!.children
-                        .map((e) => e.value.toString())
-                        .toList());
+                //future builder for list of data entries
+                return FutureBuilder(
+                    future: realTimeDatabase.getDataEntries(),
+                    builder: (context, snapshot1) {
+                      if (snapshot1.connectionState ==
+                          ConnectionState.waiting) {
+                        return const SpinKitCircle(color: Colors.grey);
+                      } else {
+                        return WidgetsPieChart(
+                            data: snapshot.data!.children
+                                .map((e) => e.value.toString())
+                                .toList());
+                      }
+                    });
               }
             }),
       ),

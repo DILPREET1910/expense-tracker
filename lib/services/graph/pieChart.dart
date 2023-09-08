@@ -135,7 +135,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
         child: PieChart(
           PieChartData(
             sections:
-                widgetsPieChartSelectionData(widget.categoriesList, touchIndex),
+                widgetsPieChartSelectionData(sortedData, touchIndex),
             pieTouchData: PieTouchData(
                 touchCallback: (FlTouchEvent event, pieTouchResponse) {
               setState(() {

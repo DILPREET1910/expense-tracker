@@ -12,9 +12,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class WidgetsPieChart extends StatefulWidget {
-  final List<String> data;
+  final List<String> categoriesList;
+  final List<List<dynamic>> dataEntriesList;
 
-  const WidgetsPieChart({super.key, required this.data});
+  const WidgetsPieChart(
+      {super.key, required this.categoriesList, required this.dataEntriesList});
 
   @override
   State<WidgetsPieChart> createState() => _WidgetsPieChartState();
@@ -106,7 +108,8 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
       Expanded(
         child: PieChart(
           PieChartData(
-            sections: widgetsPieChartSelectionData(widget.data, touchIndex),
+            sections:
+                widgetsPieChartSelectionData(widget.categoriesList, touchIndex),
             pieTouchData: PieTouchData(
                 touchCallback: (FlTouchEvent event, pieTouchResponse) {
               setState(() {
@@ -129,7 +132,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
       ),
       Expanded(
         child: ListView.builder(
-          itemCount: widget.data.length,
+          itemCount: widget.categoriesList.length,
           itemBuilder: (context, index) {
             return Listener(
               onPointerDown: (value) {
@@ -147,7 +150,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                     ? Icon(Icons.square_rounded, color: pieColorsFocus[index])
                     : Icon(Icons.circle, color: pieColors[index]),
                 title: Text(
-                  widget.data[index],
+                  widget.categoriesList[index],
                   style: touchIndex == index
                       ? GoogleFonts.ubuntu(
                           fontSize: 25,
@@ -161,7 +164,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                           color: Colors.black54),
                 ),
                 trailing: Text(
-                  widget.data[index].toString(),
+                  widget.categoriesList[index].toString(),
                   style: touchIndex == index
                       ? GoogleFonts.ubuntu(
                           fontSize: 25,

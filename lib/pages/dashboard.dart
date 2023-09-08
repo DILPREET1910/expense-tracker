@@ -44,9 +44,15 @@ class _WidgetsDashBoardState extends State<WidgetsDashBoard> {
                         return const SpinKitCircle(color: Colors.grey);
                       } else {
                         return WidgetsPieChart(
-                            data: snapshot.data!.children
-                                .map((e) => e.value.toString())
-                                .toList());
+                          categoriesList: snapshot.data!.children
+                              .map((e) => e.value.toString())
+                              .toList(),
+                          dataEntriesList: snapshot1.data!.children
+                              .map((data) => data.children
+                                  .map((entries) => entries.value.toString())
+                                  .toList())
+                              .toList(),
+                        );
                       }
                     });
               }

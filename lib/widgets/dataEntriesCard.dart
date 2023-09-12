@@ -65,22 +65,26 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
                                     data.child('date').value.toString(),
                                   ),
                                 ),
+                                width: 99,
                               ),
                             ),
                             DataCell(
                               WidgetsDataCellHeader(
                                 label: data.child('category').value.toString(),
+                                width: 100,
                               ),
                             ),
                             DataCell(
                               WidgetsDataCellHeader(
                                 label:
                                     data.child('description').value.toString(),
+                                width: 200,
                               ),
                             ),
                             DataCell(
                               WidgetsDataCellHeader(
                                 label: data.child('amount').value.toString(),
+                                width: 50,
                               ),
                             ),
                           ],

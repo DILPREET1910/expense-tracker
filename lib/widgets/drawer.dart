@@ -1,5 +1,7 @@
 import 'package:expense_tracker/pages/dashboard.dart';
 import 'package:expense_tracker/services/graph/pieChart.dart';
+import 'package:expense_tracker/widgets/appBar.dart';
+import 'package:expense_tracker/widgets/dataEntriesCard.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,27 +25,36 @@ class _WidgetsDrawerState extends State<WidgetsDrawer> {
       elevation: 0,
       child: Column(
         children: [
-          DrawerHeader(child: Icon(Icons.settings)),
+          const DrawerHeader(child: Icon(Icons.settings)),
           ListTile(
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => WidgetsDashBoard(appBar: true,)));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const WidgetsDashBoard(
+                        appBar: true,
+                      )));
             },
-            leading: Icon(Icons.home),
+            leading: const Icon(Icons.home),
             title: Text(
               "DASHBOARD",
               style: GoogleFonts.ubuntu(fontSize: 20, letterSpacing: 5),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.message),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Scaffold(
+                        appBar: WidgetsAppBar(height: 50),
+                        body: const WidgetsDataEntriesCard(),
+                      )));
+            },
+            leading: const Icon(Icons.add_chart),
             title: Text(
-              "MESSAGE",
+              "DATA ENTRIES",
               style: GoogleFonts.ubuntu(fontSize: 20, letterSpacing: 5),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.settings),
+            leading: const Icon(Icons.settings),
             title: Text(
               "SETTINGS",
               style: GoogleFonts.ubuntu(fontSize: 20, letterSpacing: 5),
@@ -51,7 +62,7 @@ class _WidgetsDrawerState extends State<WidgetsDrawer> {
           ),
           ListTile(
             onTap: logout,
-            leading: Icon(Icons.logout),
+            leading: const Icon(Icons.logout),
             title: Text(
               "LOGOUT",
               style: GoogleFonts.ubuntu(fontSize: 20, letterSpacing: 5),

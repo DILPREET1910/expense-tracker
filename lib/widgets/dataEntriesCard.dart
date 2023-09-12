@@ -38,26 +38,47 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
                 child: DataTable(
                   columns: const [
                     DataColumn(label: WidgetsDataColumnHeader(label: 'date')),
-                    DataColumn(label: WidgetsDataColumnHeader(label: 'category')),
+                    DataColumn(
+                        label: WidgetsDataColumnHeader(label: 'category')),
                     DataColumn(
                         label: WidgetsDataColumnHeader(label: 'description')),
                     DataColumn(label: WidgetsDataColumnHeader(label: 'amount')),
                   ],
                   rows: snapshot.data!.children
-                      .map((data) => DataRow(cells: [
+                      .map(
+                        (data) => DataRow(
+                          cells: [
                             // DateFormat("d-MMM-yyyy").format(_dateTime),
-                            DataCell(WidgetsDataCellHeader(
+                            DataCell(
+                              WidgetsDataCellHeader(
                                 label: DateFormat("d-MMM-yyyy").format(
-                                    DateTime.parse(
-                                        data.child('date').value.toString())))),
-                            DataCell(WidgetsDataCellHeader(
-                                label: data.child('category').value.toString())),
-                            DataCell(WidgetsDataCellHeader(
+                                  DateTime.parse(
+                                    data.child('date').value.toString(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            DataCell(
+                              WidgetsDataCellHeader(
+                                label: data.child('category').value.toString(),
+                              ),
+                            ),
+                            DataCell(
+                              WidgetsDataCellHeader(
                                 label:
-                                    data.child('description').value.toString())),
-                            DataCell(WidgetsDataCellHeader(
-                                label: data.child('amount').value.toString())),
-                          ]))
+                                    data.child('description').value.toString(),
+                              ),
+                            ),
+                            DataCell(
+                              WidgetsDataCellHeader(
+                                label: data.child('amount').value.toString(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                      .toList()
+                      .reversed
                       .toList(),
                 ),
               ),

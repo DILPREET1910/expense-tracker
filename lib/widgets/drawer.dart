@@ -44,9 +44,9 @@ class _WidgetsDrawerState extends State<WidgetsDrawer> {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => Scaffold(
                         appBar: WidgetsAppBar(height: 50),
-                        body: Container(
+                        body: const SizedBox(
                             height: double.infinity,
-                            child: const WidgetsDataEntriesCard()),
+                            child: WidgetsDataEntriesCard()),
                       )));
             },
             leading: const Icon(Icons.add_chart),

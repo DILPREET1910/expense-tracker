@@ -87,6 +87,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
       2 index - description
       3 index - category
       */
+      // FIXME : web error due to DateTIme.parse(element[0])
       DateTime currentDate = DateTime.parse(element[0]);
       if ((currentDate.isAfter(startDate) ||
               currentDate.isAtSameMomentAs(startDate)) &&

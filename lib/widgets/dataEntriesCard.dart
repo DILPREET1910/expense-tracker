@@ -19,11 +19,12 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Colors.grey[900]!,
-            width: 4,
-          ),
-          borderRadius: BorderRadius.circular(15)),
+        side: BorderSide(
+          color: Colors.grey[900]!,
+          width: 4,
+        ),
+        borderRadius: BorderRadius.circular(15),
+      ),
       elevation: 0,
       shadowColor: Colors.black,
       color: Colors.grey,
@@ -32,7 +33,7 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return SingleChildScrollView(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               scrollDirection: Axis.vertical,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,

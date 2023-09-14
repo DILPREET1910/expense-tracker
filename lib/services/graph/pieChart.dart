@@ -1,10 +1,12 @@
 import 'dart:collection';
+import 'package:expense_tracker/widgets/dataCellHeaders.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 //lib imports
 import 'package:expense_tracker/services/graph/colors.dart';
 import 'package:expense_tracker/services/graph/pieChartSectionData.dart';
+import 'package:expense_tracker/widgets/dataColumnHeaders.dart';
 
 //google fonts imports
 import 'package:google_fonts/google_fonts.dart';
@@ -161,56 +163,112 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
         ),
       ),
       Expanded(
-        child: ListView.builder(
-          itemCount: nonZeroData.length,
-          itemBuilder: (context, index) {
-            return Listener(
-              onPointerDown: (value) {
-                setState(() {
-                  touchIndex = index;
-                });
-              },
-              onPointerUp: (value) {
-                setState(() {
-                  touchIndex = -1;
-                });
-              },
-              child: ListTile(
-                leading: touchIndex == index
-                    ? Icon(Icons.square_rounded, color: pieColorsFocus[index])
-                    : Icon(Icons.circle, color: pieColors[index]),
-                title: Text(
-                  nonZeroData[index][0],
-                  style: touchIndex == index
-                      ? GoogleFonts.ubuntu(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 2,
-                          color: Colors.black)
-                      : GoogleFonts.ubuntu(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 1,
-                          color: Colors.black54),
-                ),
-                trailing: Text(
-                  nonZeroData[index][1].toString(),
-                  style: touchIndex == index
-                      ? GoogleFonts.ubuntu(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 2,
-                          color: Colors.black)
-                      : GoogleFonts.ubuntu(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: 1,
-                          color: Colors.black54),
-                ),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            side: BorderSide(
+              color: Colors.grey[900]!,
+              width: 4,
+            ),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          elevation: 0,
+          shadowColor: Colors.black,
+          color: Colors.grey,
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(10),
+            scrollDirection: Axis.vertical,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                border: TableBorder.all(width: 2, color: Colors.grey[900]!),
+                horizontalMargin: 10,
+                columnSpacing: 10,
+                columns: const [
+                  DataColumn(label: WidgetsDataColumnHeader(label: 'Category')),
+                  DataColumn(label: WidgetsDataColumnHeader(label: 'Amount')),
+                  DataColumn(
+                      label: WidgetsDataColumnHeader(label: 'Percentage')),
+                ],
+                rows: nonZeroData
+                    .map(
+                      (element) => DataRow(
+                        cells: [
+                          DataCell(
+                            WidgetsDataCellHeader(
+                              label: element[0],
+                              width: 120,
+                            ),
+                          ),
+                          DataCell(
+                            WidgetsDataCellHeader(
+                              label: element[1].toString(),
+                              width: 100,
+                            ),
+                          ),
+                          DataCell(
+                            WidgetsDataCellHeader(
+                              label: element[1].toString(),
+                              width: 100,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                    .toList(),
               ),
-            );
-          },
+            ),
+          ),
         ),
+        // child: ListView.builder(
+        //   itemCount: nonZeroData.length,
+        //   itemBuilder: (context, index) {
+        //     return Listener(
+        //       onPointerDown: (value) {
+        //         setState(() {
+        //           touchIndex = index;
+        //         });
+        //       },
+        //       onPointerUp: (value) {
+        //         setState(() {
+        //           touchIndex = -1;
+        //         });
+        //       },
+        //       child: ListTile(
+        //         leading: touchIndex == index
+        //             ? Icon(Icons.square_rounded, color: pieColorsFocus[index])
+        //             : Icon(Icons.circle, color: pieColors[index]),
+        //         title: Text(
+        //           nonZeroData[index][0],
+        //           style: touchIndex == index
+        //               ? GoogleFonts.ubuntu(
+        //                   fontSize: 25,
+        //                   fontWeight: FontWeight.w600,
+        //                   letterSpacing: 2,
+        //                   color: Colors.black)
+        //               : GoogleFonts.ubuntu(
+        //                   fontSize: 20,
+        //                   fontWeight: FontWeight.w500,
+        //                   letterSpacing: 1,
+        //                   color: Colors.black54),
+        //         ),
+        //         trailing: Text(
+        //           nonZeroData[index][1].toString(),
+        //           style: touchIndex == index
+        //               ? GoogleFonts.ubuntu(
+        //                   fontSize: 25,
+        //                   fontWeight: FontWeight.w600,
+        //                   letterSpacing: 2,
+        //                   color: Colors.black)
+        //               : GoogleFonts.ubuntu(
+        //                   fontSize: 20,
+        //                   fontWeight: FontWeight.w500,
+        //                   letterSpacing: 1,
+        //                   color: Colors.black54),
+        //         ),
+        //       ),
+        //     );
+        //   },
+        // ),
       ),
     ]);
   }

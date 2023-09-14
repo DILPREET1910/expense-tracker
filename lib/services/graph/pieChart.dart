@@ -100,6 +100,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
       }
     });
 
+    //non zero data
     List<List<dynamic>> nonZeroData = [];
     double total = 0.0;
     //get total amount
@@ -110,6 +111,65 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
     sortedData.forEach((key, value) {
       if (value != 0.0) nonZeroData.add([key, value, (value / total) * 100]);
     });
+
+    //get list of DataRows
+    List<DataRow> getDataRows() {
+      //data rows
+      List<DataRow> dataRow = nonZeroData
+          .map(
+            (element) => DataRow(
+              cells: [
+                DataCell(
+                  WidgetsDataCellHeader(
+                    label: element[0],
+                    width: 120,
+                  ),
+                ),
+                DataCell(
+                  WidgetsDataCellHeader(
+                    label: element[1].toString(),
+                    width: 100,
+                    alignRight: true,
+                  ),
+                ),
+                DataCell(
+                  WidgetsDataCellHeader(
+                    label: "${element[2].toStringAsFixed(2)}%",
+                    width: 100,
+                    alignRight: true,
+                  ),
+                ),
+              ],
+            ),
+          )
+          .toList();
+      //bottom header
+      dataRow.add(
+        DataRow(
+          color: MaterialStatePropertyAll(Colors.grey[700]),
+          cells: [
+            const DataCell(
+              WidgetsDataColumnHeader(
+                label: "Total",
+              ),
+            ),
+            DataCell(
+              WidgetsDataColumnHeader(
+                label: total.toString(),
+                alignRight: true,
+              ),
+            ),
+            const DataCell(
+              WidgetsDataColumnHeader(
+                label: "100%",
+                alignRight: true,
+              ),
+            ),
+          ],
+        ),
+      );
+      return dataRow;
+    }
 
     return Column(children: [
       Row(
@@ -200,34 +260,7 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                   DataColumn(
                       label: WidgetsDataColumnHeader(label: 'Percentage')),
                 ],
-                rows: nonZeroData
-                    .map(
-                      (element) => DataRow(
-                        cells: [
-                          DataCell(
-                            WidgetsDataCellHeader(
-                              label: element[0],
-                              width: 120,
-                            ),
-                          ),
-                          DataCell(
-                            WidgetsDataCellHeader(
-                              label: element[1].toString(),
-                              width: 100,
-                              alignRight: true,
-                            ),
-                          ),
-                          DataCell(
-                            WidgetsDataCellHeader(
-                              label: "${element[2].toStringAsFixed(2)}%",
-                              width: 100,
-                              alignRight: true,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                    .toList(),
+                rows: getDataRows(),
               ),
             ),
           ),

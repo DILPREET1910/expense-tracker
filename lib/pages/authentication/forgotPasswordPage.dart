@@ -30,8 +30,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     showDialog(
         context: context,
         builder: (context) {
-          return const SpinKitCircle(
-            color: Colors.grey,
+          return SpinKitCircle(
+            color: Colors.grey[900],
           );
         });
 

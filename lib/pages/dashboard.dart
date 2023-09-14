@@ -33,7 +33,7 @@ class _WidgetsDashBoardState extends State<WidgetsDashBoard> {
             future: realTimeDatabase.getCategories(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const SpinKitCircle(color: Colors.grey);
+                return SpinKitCircle(color: Colors.grey[900]);
               } else {
                 //future builder for list of data entries
                 return FutureBuilder(
@@ -41,7 +41,7 @@ class _WidgetsDashBoardState extends State<WidgetsDashBoard> {
                     builder: (context, snapshot1) {
                       if (snapshot1.connectionState ==
                           ConnectionState.waiting) {
-                        return const SpinKitCircle(color: Colors.grey);
+                        return SpinKitCircle(color: Colors.grey[900]);
                       } else {
                         return WidgetsPieChart(
                           categoriesList: snapshot.data!.children

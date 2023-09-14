@@ -112,7 +112,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                             },
                           );
                         } else {
-                          return const SpinKitCircle(color: Colors.grey);
+                          return SpinKitCircle(color: Colors.grey[900]);
                         }
                       },
                     )),

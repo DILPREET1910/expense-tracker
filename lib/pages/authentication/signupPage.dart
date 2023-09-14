@@ -37,8 +37,8 @@ class _SignUpPageState extends State<SignUpPage> {
       showDialog(
           context: context,
           builder: (context) {
-            return const SpinKitCircle(
-              color: Colors.grey,
+            return SpinKitCircle(
+              color: Colors.grey[900],
             );
           });
 

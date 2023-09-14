@@ -181,12 +181,17 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
           shadowColor: Colors.black,
           color: Colors.grey,
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(12),
             scrollDirection: Axis.vertical,
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
-                border: TableBorder.all(width: 2, color: Colors.grey[900]!),
+                headingRowColor: MaterialStateColor.resolveWith(
+                    (states) => Colors.grey[700]!),
+                border: TableBorder.all(
+                  width: 2,
+                  color: Colors.grey[900]!,
+                ),
                 horizontalMargin: 10,
                 columnSpacing: 10,
                 columns: const [

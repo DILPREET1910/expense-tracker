@@ -33,17 +33,17 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return SingleChildScrollView(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(12),
               scrollDirection: Axis.vertical,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: DataTable(
-                  border: TableBorder(
-                    horizontalInside:
-                        BorderSide(width: 2, color: Colors.grey.shade900),
-                    verticalInside:
-                        BorderSide(width: 2, color: Colors.grey.shade900),
+                  border: TableBorder.all(
+                    width: 2,
+                    color: Colors.grey[900]!,
                   ),
+                  headingRowColor: MaterialStateColor.resolveWith(
+                      (states) => Colors.grey[700]!),
                   horizontalMargin: 10,
                   columnSpacing: 10,
                   columns: const [

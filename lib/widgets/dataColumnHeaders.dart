@@ -16,6 +16,7 @@ class WidgetsDataColumnHeader extends StatelessWidget {
         fontSize: 17,
         fontWeight: FontWeight.w500,
         letterSpacing: 1,
+        color: Colors.black
       ),
     );
   }

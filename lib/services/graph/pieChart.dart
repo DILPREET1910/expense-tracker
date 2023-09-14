@@ -101,8 +101,14 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
     });
 
     List<List<dynamic>> nonZeroData = [];
+    double total = 0.0;
+    //get total amount
     sortedData.forEach((key, value) {
-      if (value != 0.0) nonZeroData.add([key, value]);
+      total += value;
+    });
+    //set nonZeroData
+    sortedData.forEach((key, value) {
+      if (value != 0.0) nonZeroData.add([key, value, (value / total) * 100]);
     });
 
     return Column(children: [
@@ -203,12 +209,14 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
                             WidgetsDataCellHeader(
                               label: element[1].toString(),
                               width: 100,
+                              alignRight: true,
                             ),
                           ),
                           DataCell(
                             WidgetsDataCellHeader(
-                              label: element[1].toString(),
+                              label: "${element[2].toStringAsFixed(2)}%",
                               width: 100,
+                              alignRight: true,
                             ),
                           ),
                         ],

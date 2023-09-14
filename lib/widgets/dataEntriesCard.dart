@@ -86,6 +86,7 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
                               WidgetsDataCellHeader(
                                 label: data.child('amount').value.toString(),
                                 width: 50,
+                                alignRight: true,
                               ),
                             ),
                           ],

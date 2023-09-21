@@ -75,7 +75,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                     return Column(
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(20),
+                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
                           height: MediaQuery.sizeOf(context).height / 2,
                           child: ListView.builder(
                             itemCount: categoryList.length,

@@ -32,11 +32,12 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
         future: realTimeDatabase.getDataEntries(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return SingleChildScrollView(
-              padding: const EdgeInsets.all(12),
-              scrollDirection: Axis.vertical,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+            return Container(
+              padding: const EdgeInsets.all(10),
+              child: InteractiveViewer(
+                minScale: 0.01,
+                maxScale: 2,
+                constrained: false,
                 child: DataTable(
                   border: TableBorder.all(
                     width: 2,

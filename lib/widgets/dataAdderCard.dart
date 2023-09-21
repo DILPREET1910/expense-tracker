@@ -54,25 +54,29 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
 
   //category picker
   void _selectCategory() {
-    showDialog(
+    showModalBottomSheet(
         context: context,
+        backgroundColor: Colors.grey[400],
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(25),
+            topLeft: Radius.circular(25),
+          ),
+        ),
         builder: (context) {
           return StatefulBuilder(
             builder: (context, StateSetter secondSetState) {
-              return AlertDialog(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15)),
-                backgroundColor: Colors.grey[400],
-                content: SizedBox(
-                    height: 200,
-                    width: 100,
-                    child: FutureBuilder(
-                      future: realTimeDatabase.getCategories(),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.done &&
-                            snapshot.hasData) {
-                          final categoryList = snapshot.data!.children.toList();
-                          return ListView.builder(
+              return FutureBuilder(
+                future: realTimeDatabase.getCategories(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData) {
+                    final categoryList = snapshot.data!.children.toList();
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: MediaQuery.sizeOf(context).height / 2,
+                          child: ListView.builder(
                             itemCount: categoryList.length,
                             itemBuilder: (context, index) {
                               return ListTile(
@@ -110,33 +114,37 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                                 ),
                               );
                             },
-                          );
-                        } else {
-                          return SpinKitCircle(color: Colors.grey[900]);
-                        }
-                      },
-                    )),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        addCategory(context, realTimeDatabase, secondSetState);
-                      },
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.add, size: 25, color: Colors.grey[900]),
-                            const SizedBox(width: 10),
-                            Text(
-                              "Add new category",
-                              style: GoogleFonts.ubuntu(
-                                color: Colors.grey[900],
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18,
-                                letterSpacing: 0.5,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            addCategory(
+                                context, realTimeDatabase, secondSetState);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.add,
+                                  size: 25, color: Colors.grey[900]),
+                              const SizedBox(width: 10),
+                              Text(
+                                "Add new category",
+                                style: GoogleFonts.ubuntu(
+                                  color: Colors.grey[900],
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 18,
+                                  letterSpacing: 0.5,
+                                ),
                               ),
-                            )
-                          ]))
-                ],
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return SpinKitCircle(color: Colors.grey[900]);
+                  }
+                },
               );
             },
           );

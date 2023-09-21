@@ -64,89 +64,103 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
           ),
         ),
         builder: (context) {
-          return StatefulBuilder(
-            builder: (context, StateSetter secondSetState) {
-              return FutureBuilder(
-                future: realTimeDatabase.getCategories(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done &&
-                      snapshot.hasData) {
-                    final categoryList = snapshot.data!.children.toList();
-                    return Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                          height: MediaQuery.sizeOf(context).height / 2,
-                          child: ListView.builder(
-                            itemCount: categoryList.length,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                title: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    setState(() {
-                                      category =
-                                          categoryList[index].value.toString();
-                                    });
-                                  },
-                                  child: Text(
-                                    categoryList[index].value.toString(),
-                                    style: GoogleFonts.ubuntu(
-                                      fontSize: 23,
-                                      letterSpacing: 1,
-                                      wordSpacing: 2,
-                                      fontWeight: FontWeight.w400,
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              return StatefulBuilder(
+                builder: (context, StateSetter secondSetState) {
+                  return FutureBuilder(
+                    future: realTimeDatabase.getCategories(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done &&
+                          snapshot.hasData) {
+                        final categoryList = snapshot.data!.children.toList();
+                        return Column(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                              height: constraints.maxHeight - 66,
+                              child: ListView.builder(
+                                itemCount: categoryList.length,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    title: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                        setState(() {
+                                          category = categoryList[index]
+                                              .value
+                                              .toString();
+                                        });
+                                      },
+                                      child: Text(
+                                        categoryList[index].value.toString(),
+                                        style: GoogleFonts.ubuntu(
+                                          fontSize: 23,
+                                          letterSpacing: 1,
+                                          wordSpacing: 2,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    trailing: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Icon(Icons.edit),
+                                        const SizedBox(width: 5),
+                                        GestureDetector(
+                                            onTap: () async {
+                                              await realTimeDatabase
+                                                  .removeCategory(
+                                                      categoryList[index]
+                                                          .key
+                                                          .toString(),
+                                                      secondSetState);
+                                            },
+                                            child: const Icon(Icons.delete))
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                addCategory(
+                                    context, realTimeDatabase, secondSetState);
+                              },
+                              child: Container(
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[900],
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
+                                // padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Icon(Icons.edit),
-                                    const SizedBox(width: 5),
-                                    GestureDetector(
-                                        onTap: () async {
-                                          await realTimeDatabase.removeCategory(
-                                              categoryList[index]
-                                                  .key
-                                                  .toString(),
-                                              secondSetState);
-                                        },
-                                        child: const Icon(Icons.delete))
+                                    Icon(Icons.add,
+                                        size: 25, color: Colors.grey[400]),
+                                    const SizedBox(width: 10),
+                                    Text(
+                                      "Add new category",
+                                      style: GoogleFonts.ubuntu(
+                                        color: Colors.grey[400],
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 18,
+                                        letterSpacing: 0.5,
+                                      ),
+                                    ),
                                   ],
                                 ),
-                              );
-                            },
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            addCategory(
-                                context, realTimeDatabase, secondSetState);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.add,
-                                  size: 25, color: Colors.grey[900]),
-                              const SizedBox(width: 10),
-                              Text(
-                                "Add new category",
-                                style: GoogleFonts.ubuntu(
-                                  color: Colors.grey[900],
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 18,
-                                  letterSpacing: 0.5,
-                                ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    );
-                  } else {
-                    return SpinKitCircle(color: Colors.grey[900]);
-                  }
+                            ),
+                          ],
+                        );
+                      } else {
+                        return SpinKitCircle(color: Colors.grey[900]);
+                      }
+                    },
+                  );
                 },
               );
             },

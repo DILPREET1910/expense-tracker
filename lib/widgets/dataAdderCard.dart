@@ -74,7 +74,8 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                     final categoryList = snapshot.data!.children.toList();
                     return Column(
                       children: [
-                        SizedBox(
+                        Container(
+                          padding: const EdgeInsets.all(20),
                           height: MediaQuery.sizeOf(context).height / 2,
                           child: ListView.builder(
                             itemCount: categoryList.length,
@@ -91,7 +92,9 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                                   child: Text(
                                     categoryList[index].value.toString(),
                                     style: GoogleFonts.ubuntu(
-                                      fontSize: 20,
+                                      fontSize: 23,
+                                      letterSpacing: 1,
+                                      wordSpacing: 2,
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),

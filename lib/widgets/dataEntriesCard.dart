@@ -39,6 +39,8 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: DataTable(
+                    dataRowMinHeight: 30,
+                    dataRowMaxHeight: 30,
                     border: TableBorder.all(
                       width: 2,
                       color: Colors.grey[900]!,

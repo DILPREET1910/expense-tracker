@@ -246,6 +246,8 @@ class _WidgetsPieChartState extends State<WidgetsPieChart> {
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: DataTable(
+                dataRowMinHeight: 30,
+                dataRowMaxHeight: 30,
                 headingRowColor: MaterialStateColor.resolveWith(
                     (states) => Colors.grey[700]!),
                 border: TableBorder.all(

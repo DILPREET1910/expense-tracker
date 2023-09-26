@@ -34,68 +34,73 @@ class _WidgetsDataEntriesCardState extends State<WidgetsDataEntriesCard> {
           if (snapshot.connectionState == ConnectionState.done) {
             return Container(
               padding: const EdgeInsets.all(10),
-              child: InteractiveViewer(
-                minScale: 0.01,
-                maxScale: 2,
-                constrained: false,
-                child: DataTable(
-                  border: TableBorder.all(
-                    width: 2,
-                    color: Colors.grey[900]!,
-                  ),
-                  headingRowColor: MaterialStateColor.resolveWith(
-                      (states) => Colors.grey[700]!),
-                  horizontalMargin: 10,
-                  columnSpacing: 10,
-                  columns: const [
-                    DataColumn(label: WidgetsDataColumnHeader(label: 'date')),
-                    DataColumn(
-                        label: WidgetsDataColumnHeader(label: 'category')),
-                    DataColumn(
-                        label: WidgetsDataColumnHeader(label: 'description')),
-                    DataColumn(label: WidgetsDataColumnHeader(label: 'amount')),
-                  ],
-                  rows: snapshot.data!.children
-                      .map(
-                        (data) => DataRow(
-                          cells: [
-                            // DateFormat("d-MMM-yyyy").format(_dateTime),
-                            DataCell(
-                              WidgetsDataCellHeader(
-                                label: DateFormat("d-MMM-yyyy").format(
-                                  DateTime.parse(
-                                    data.child('date').value.toString(),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: DataTable(
+                    border: TableBorder.all(
+                      width: 2,
+                      color: Colors.grey[900]!,
+                    ),
+                    headingRowColor: MaterialStateColor.resolveWith(
+                        (states) => Colors.grey[700]!),
+                    horizontalMargin: 10,
+                    columnSpacing: 10,
+                    columns: const [
+                      DataColumn(label: WidgetsDataColumnHeader(label: 'date')),
+                      DataColumn(
+                          label: WidgetsDataColumnHeader(label: 'category')),
+                      DataColumn(
+                          label: WidgetsDataColumnHeader(label: 'description')),
+                      DataColumn(
+                          label: WidgetsDataColumnHeader(label: 'amount')),
+                    ],
+                    rows: snapshot.data!.children
+                        .map(
+                          (data) => DataRow(
+                            cells: [
+                              // DateFormat("d-MMM-yyyy").format(_dateTime),
+                              DataCell(
+                                WidgetsDataCellHeader(
+                                  label: DateFormat("d-MMM-yyyy").format(
+                                    DateTime.parse(
+                                      data.child('date').value.toString(),
+                                    ),
                                   ),
+                                  width: 99,
                                 ),
-                                width: 99,
                               ),
-                            ),
-                            DataCell(
-                              WidgetsDataCellHeader(
-                                label: data.child('category').value.toString(),
-                                width: 100,
+                              DataCell(
+                                WidgetsDataCellHeader(
+                                  label:
+                                      data.child('category').value.toString(),
+                                  width: 100,
+                                ),
                               ),
-                            ),
-                            DataCell(
-                              WidgetsDataCellHeader(
-                                label:
-                                    data.child('description').value.toString(),
-                                width: 200,
+                              DataCell(
+                                WidgetsDataCellHeader(
+                                  label: data
+                                      .child('description')
+                                      .value
+                                      .toString(),
+                                  width: 200,
+                                ),
                               ),
-                            ),
-                            DataCell(
-                              WidgetsDataCellHeader(
-                                label: data.child('amount').value.toString(),
-                                width: 50,
-                                alignRight: true,
+                              DataCell(
+                                WidgetsDataCellHeader(
+                                  label: data.child('amount').value.toString(),
+                                  width: 50,
+                                  alignRight: true,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      )
-                      .toList()
-                      .reversed
-                      .toList(),
+                            ],
+                          ),
+                        )
+                        .toList()
+                        .reversed
+                        .toList(),
+                  ),
                 ),
               ),
             );

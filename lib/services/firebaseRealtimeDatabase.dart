@@ -10,16 +10,15 @@ class RealTimeDatabase {
   final userUID = FirebaseAuth.instance.currentUser?.uid;
 
   //add single data entry
-  Future<void> addDataEntry(
-      String date, String category, double amount, String description) async {
+  Future<void> addDataEntry(String date, String category, double amount, String description) async {
     SingleDataEntry singleDataEntry = SingleDataEntry();
 
-    DatabaseReference databaseReference =
-        realtimeDatabase.ref("$userUID/DataEntries/");
+    DatabaseReference databaseReference = realtimeDatabase.ref("$userUID/DataEntries/");
     DatabaseReference postReference = databaseReference.push();
+
     try {
-      await postReference.set(singleDataEntry.singleJsonDataEntry(
-          date, category, amount, description));
+      await postReference
+          .set(singleDataEntry.singleJsonDataEntry(date, category, amount, description));
     } on FirebaseException catch (error) {
       print("Error while single data entry : $error");
     }
@@ -38,8 +37,7 @@ class RealTimeDatabase {
   //add new category
   Future<void> addCategories(String category, secondSetState) async {
     //categories database reference
-    DatabaseReference databaseReference =
-        realtimeDatabase.ref("$userUID/Categories/");
+    DatabaseReference databaseReference = realtimeDatabase.ref("$userUID/Categories/");
     DatabaseReference postReference = databaseReference.push();
 
     try {
@@ -52,8 +50,7 @@ class RealTimeDatabase {
 
   //delete category
   Future<void> removeCategory(String category, secondSetState) async {
-    DatabaseReference databaseReference =
-        realtimeDatabase.ref("$userUID/Categories/");
+    DatabaseReference databaseReference = realtimeDatabase.ref("$userUID/Categories/");
     try {
       await databaseReference.child(category).remove();
       secondSetState(() {});

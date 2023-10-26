@@ -14,9 +14,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class WidgetsDataAdderCard extends StatefulWidget {
-  Function(bool value) setParentState;
+  final Function(bool value) setParentState;
 
-  WidgetsDataAdderCard({super.key, required this.setParentState});
+  const WidgetsDataAdderCard({super.key, required this.setParentState});
 
   @override
   State<WidgetsDataAdderCard> createState() => _WidgetsDataAdderCardState();
@@ -28,8 +28,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
 
   //TextField controllers
   final TextEditingController _amountTextController = TextEditingController();
-  final TextEditingController _descriptionTextController =
-      TextEditingController();
+  final TextEditingController _descriptionTextController = TextEditingController();
 
   //datePicker functions
   void _showDatePicker() {
@@ -71,8 +70,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                   return FutureBuilder(
                     future: realTimeDatabase.getCategories(),
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done &&
-                          snapshot.hasData) {
+                      if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
                         final categoryList = snapshot.data!.children.toList();
                         return Column(
                           children: [
@@ -87,9 +85,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                                       onTap: () {
                                         Navigator.pop(context);
                                         setState(() {
-                                          category = categoryList[index]
-                                              .value
-                                              .toString();
+                                          category = categoryList[index].value.toString();
                                         });
                                       },
                                       child: Text(
@@ -109,12 +105,9 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                                         const SizedBox(width: 5),
                                         GestureDetector(
                                             onTap: () async {
-                                              await realTimeDatabase
-                                                  .removeCategory(
-                                                      categoryList[index]
-                                                          .key
-                                                          .toString(),
-                                                      secondSetState);
+                                              await realTimeDatabase.removeCategory(
+                                                  categoryList[index].key.toString(),
+                                                  secondSetState);
                                             },
                                             child: const Icon(Icons.delete))
                                       ],
@@ -125,8 +118,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                             ),
                             TextButton(
                               onPressed: () {
-                                addCategory(
-                                    context, realTimeDatabase, secondSetState);
+                                addCategory(context, realTimeDatabase, secondSetState);
                               },
                               child: Container(
                                 height: 50,
@@ -138,8 +130,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.add,
-                                        size: 25, color: Colors.grey[400]),
+                                    Icon(Icons.add, size: 25, color: Colors.grey[400]),
                                     const SizedBox(width: 10),
                                     Text(
                                       "Add new category",
@@ -200,9 +191,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                     child: Text(
                       DateFormat("d-MMM-yyyy").format(_dateTime),
                       style: GoogleFonts.ubuntu(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700),
+                          fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
                     )),
               ),
               //END: Date Picker
@@ -217,9 +206,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
                       softWrap: false,
                       maxLines: 1,
                       style: GoogleFonts.ubuntu(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700),
+                          fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
                     )),
               ),
               //END: Category Picker
@@ -251,8 +238,7 @@ class _WidgetsDataAdderCardState extends State<WidgetsDataAdderCard> {
               onPressed: () {
                 realTimeDatabase
                     .addDataEntry(
-                        DateTime(_dateTime.year, _dateTime.month, _dateTime.day)
-                            .toString(),
+                        DateTime(_dateTime.year, _dateTime.month, _dateTime.day).toString(),
                         category!,
                         double.parse(_amountTextController.text.trim()),
                         _descriptionTextController.text.trim())

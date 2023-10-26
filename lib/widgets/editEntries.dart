@@ -272,7 +272,16 @@ class _WidgetsEditDataEntryState extends State<WidgetsEditDataEntry> {
               color: Colors.grey[900],
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  realTimeDatabase.editDataEntry(
+                      widget.snapshot.key!,
+                      dateTime.toString(),
+                      category,
+                      double.parse(amountTextController.text.trim()),
+                      descriptionTextController.text.trim());
+                  Navigator.pop(context);
+                  widget.setParentState;
+                },
                 child: Text(
                   'save',
                   style: GoogleFonts.ubuntu(

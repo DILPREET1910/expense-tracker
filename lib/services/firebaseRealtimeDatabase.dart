@@ -24,6 +24,21 @@ class RealTimeDatabase {
     }
   }
 
+  // edit data
+  Future<void> editDataEntry(
+      String key, String date, String category, double amount, String description) async {
+    SingleDataEntry singleDataEntry = SingleDataEntry();
+
+    DatabaseReference databaseReference = realtimeDatabase.ref("$userUID/DataEntries/$key/");
+
+    try {
+      await databaseReference
+          .update(singleDataEntry.singleJsonDataEntry(date, category, amount, description));
+    } on FirebaseException catch (error) {
+      print("Error while editing data entry: $error");
+    }
+  }
+
   //get list of data entries
   Future<DataSnapshot?> getDataEntries() async {
     try {

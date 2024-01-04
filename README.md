@@ -30,7 +30,7 @@ In this Flutter project, all code related to the UI and Firebase backend is orga
 
 # Acknowledgements
 
-flutter libraries used from [pub.dev](pub.dev)\
+flutter libraries used from [pub.dev](https://pub.dev)\
 [cupertino_icons](https://pub.dev/packages/cupertino_icons)\
 [google_fonts](https://pub.dev/packages/google_fonts)\
 [intl](https://pub.dev/packages/intl)\

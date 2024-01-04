@@ -1,6 +1,6 @@
-# Expense-Tracker
+# [Expense-Tracker](https://github.com/DILPREET1910/expense-tracker/releases)
 
-[![Product-Video](assets/readme/product-video.mp4)](https://github.com/DILPREET1910/expense-tracker/releases)
+https://github.com/DILPREET1910/expense-tracker/assets/81746463/7e401ea7-6189-4700-8dd0-28c54275592d
 
 The Expense Tracker is a personal finance tool designed to help individuals monitor their spending habits and manage their expenses effectively. This intuitive application enables users to create custom categories and add expenses accordingly. By offering a comprehensive view of all data entries and a dynamic dashboard displaying total costs within specified date ranges and across categories, this tool assists in gaining insights into spending patterns.
 
